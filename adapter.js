@@ -16,22 +16,6 @@ class Adapter{
         // this.deleteSong()
     }
     
-<<<<<<< HEAD
-=======
-
-    renderSongButton(songObj){ //better called load songs? this is specific dom manipulation/html
-        let songsCard = document.getElementById("songs")
-        let songButton = document.createElement("button")
-        songButton.className = "button btn-secondary"
-        songButton.innerText = songObj.name
-        songButton.addEventListener("click", ()=> {
-            // console.log(songObj.audios())
-            playSong(songObj.audios()) // need to pass in a song object with chords attribute as audios
-            songObj.beat.play()
-        }) // add event listener to button to play song
-        songsCard.appendChild(songButton)
-    }
->>>>>>> 567f7bf301acad356a60dd5294a5a30cd36b6b0b
 
     addChordButton(chord){ 
 
@@ -127,7 +111,7 @@ class Adapter{
         playButton.addEventListener("click", ()=> {
             //select all audios from the track card or use the song array
             this.playSong(this.newSong)
-            this.newSong.beat.play()
+            // this.newSong.beat.play()
             
         }) // add event listener to button to play 
         trackBtns.appendChild(playButton)
@@ -172,6 +156,15 @@ class Adapter{
                                 } else{
                                     clearInterval(playInterval)
                                     clearInterval(stopInterval)
+                                    // let allAudios = document.querySelectorAll("audio")
+            
+                                    // for(let audio of allAudios){
+                                    //     audio.pause()
+                                    //     audio.currentTime = 0
+                                    // }
+                                    // console.log(this)
+                                    // this.newSong.beat.pause()
+                                    // this.newSong.beat.currentTime = 0
                                     song.beat.pause()
                                     song.beat.currentTime = 0;
                                     console.log('playInterval')
@@ -193,6 +186,7 @@ class Adapter{
                         }
                         
         song.audios[0].play()
+        song.beat.play()
         
         let i = 0
         let playInterval = setInterval(playAudio(i), 2000)
@@ -210,6 +204,7 @@ class Adapter{
         let saveButton = document.createElement("button")
         saveButton.innerText = "Save Song"
         saveButton.addEventListener("click", ()=>{
+            console.log(this.newSong)
             this.saveSong(this.newSong)
         })
         trackBtns.appendChild(saveButton)
@@ -236,19 +231,17 @@ class Adapter{
     }
 
     renderSongButton(song){ //better called load songs? this is specific dom manipulation/html
+        song = song.attributes
         const songObj = new Song(song.name, song.chords)
+        // console.log(songObj)
         let songsCard = document.getElementById("songs")
         let songButton = document.createElement("button")
         songButton.className = "button btn-secondary"
         songButton.innerText = songObj.name
         songButton.addEventListener("click", ()=> {
             // console.log(songObj.audios())
-<<<<<<< HEAD
             this.playSong(songObj) // how to find this song?
-=======
-            this.playSong(songObj.audios()) // how to find this song?
->>>>>>> 567f7bf301acad356a60dd5294a5a30cd36b6b0b
-            this.newSong.beat.play()
+            // this.newSong.beat.play()
         }) // add event listener to button to play song
         songsCard.appendChild(songButton)
     }

@@ -11,8 +11,11 @@ class App{
         this.adapter.getSongs()
             .then((songs) => {
                 // render song takes in a song object
-                for(let song of songs){
-                    this.adapter.renderSongButton(song) //this function needs to take an array of serialized songs from fast json api
+                //need to manipulate songs json
+                // or fix the get request link
+                // console.log(songs.data)
+                for(let song of songs.data){
+                    this.adapter.renderSongButton(song) 
                 }
             //    console.log(serverSongs)
             })
