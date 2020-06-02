@@ -22,7 +22,7 @@ class Adapter{
         let chordsCard = document.getElementById("chords")
         let chordButton = document.createElement("button")
          //  <a href="#" class="btn btn-info">C</a>
-         chordButton.className = "button btn-outline-info"
+         chordButton.className = "button btn-outline-dark"
          chordButton.href = "#" 
          chordButton.innerText = chord.name
         let addIcon = document.createElement("span")
@@ -60,7 +60,7 @@ class Adapter{
         }
         for (let trackChord of this.newSong.chords){
             let chordButtonTrack = document.createElement("button") //create these buttons from new song chords
-            chordButtonTrack.className = "button btn-info"
+            chordButtonTrack.className = "button btn-dark"
             chordButtonTrack.href = "#" 
             chordButtonTrack.innerText = trackChord.name
             let minus = document.createElement("span")
@@ -236,14 +236,18 @@ class Adapter{
         // console.log(songObj)
         let songsCard = document.getElementById("songs")
         let songButton = document.createElement("button")
-        songButton.className = "button btn-secondary"
+        let br = document.createElement("br")
+        songButton.className = "button btn-dark"
         songButton.innerText = songObj.name
         songButton.addEventListener("click", ()=> {
             // console.log(songObj.audios())
             this.playSong(songObj) // how to find this song?
             // this.newSong.beat.play()
         }) // add event listener to button to play song
+        
         songsCard.appendChild(songButton)
+        songsCard.appendChild(br)
+
     }
 
     
