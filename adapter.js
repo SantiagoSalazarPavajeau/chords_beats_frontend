@@ -34,8 +34,8 @@ class Adapter{
             let trackChord = new Chord(chord.name, chord.file) // # 1 creates random edit_id for chord buttons added from chord card
             // the chord created here was already created on load of new song
             this.newSong.chords.push(trackChord) //add chord object to song object chords attribute
-            // this.newSong.audios.push(trackChord.audio())
-            this.newSong.audios()
+            this.newSong.audios.push(trackChord.audio())
+            // this.newSong.audios()
             chord.audio().play() //play chord audio
             this.track()
             // console.log(this.newSong)
@@ -139,7 +139,7 @@ class Adapter{
         return song;
     }
 
-    playSong(song) {
+    playSong(song){
         
         // song.audios()
         let allAudios = document.querySelectorAll("audio")
@@ -182,7 +182,7 @@ class Adapter{
         
         let i = 0
         const playInterval = setInterval(playAudio(i), 2000)
-        const stopInterval = setInterval(stopAudio(i), 1700)
+        const stopInterval = setInterval(stopAudio(i), 1500)
         
     }
 
