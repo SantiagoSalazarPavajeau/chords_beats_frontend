@@ -32,9 +32,10 @@ class Adapter{
         let audio = chord.audio() // use chord obj method to create audio tag from file
         chordButton.addEventListener("click", ()=> { // add chord to new song
             let trackChord = new Chord(chord.name, chord.file)
-            trackChord.edit_id = Math.floor(Math.random() * Math.random() * 1000)
+            // trackChord.edit_id = Math.floor(Math.random() * Math.random() * 1000)
             this.newSong.chords.push(trackChord) //add chord object to song object chords attribute
-            this.newSong.audios.push(trackChord.audio())
+            // this.newSong.audios.push(trackChord.audio())
+            this.newSong.audios()
             audio.play() //play chord audio
             this.track()
             // console.log(this.newSong)
@@ -61,7 +62,7 @@ class Adapter{
         for (let trackChord of this.newSong.chords){
             let chordButtonTrack = document.createElement("button") //create these buttons from new song chords
             chordButtonTrack.className = "button btn-dark"
-            chordButtonTrack.href = "#" 
+            chordButtonTrack.href = "#"
             chordButtonTrack.innerText = trackChord.name
             let minus = document.createElement("span")
             minus.innerHTML = `<svg class="bi bi-dash-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -71,14 +72,16 @@ class Adapter{
             chordButtonTrack.appendChild(minus)
             trackCard.appendChild(chordButtonTrack)
             chordButtonTrack.addEventListener("click", (e)=>{
-                chordButtonTrack.parentNode.removeChild(chordButtonTrack)
+                // console.log(this.newSong.audios.filter((newSongAudio)=>{return parseInt(newSongAudio.id) !== trackChord.edit_id}))
+                this.newSong.chords = this.newSong.chords.filter((chord)=>{return chord.edit_id !== trackChord.edit_id})
+                this.newSong.audios()
+                debugger
+
                 trackChord.audio().pause()
                 trackChord.audio().currentTime = 0
-                // add audio to song
-                // song could be an array
-                this.newSong.chords = this.newSong.chords.filter(function(songChord){return songChord.id !== trackChord.id})
+                chordButtonTrack.parentNode.removeChild(chordButtonTrack)
                 // console.log(this.newSong)
-
+                
             })
         }
     }
@@ -139,7 +142,7 @@ class Adapter{
     
 
     playSong(song) {
-
+        song.audios()
         let allAudios = document.querySelectorAll("audio")
             
         for(let audio of allAudios){
@@ -184,13 +187,14 @@ class Adapter{
                                 
                             }
                         }
-                        
+        debugger
         song.audios[0].play()
         song.beat.play()
         
         let i = 0
-        let playInterval = setInterval(playAudio(i), 2000)
-        let stopInterval = setInterval(stopAudio(i), 1700)
+        const playInterval = setInterval(playAudio(i), 2000)
+        const stopInterval = setInterval(stopAudio(i), 1700)
+        
     }
 
     getSongs(){

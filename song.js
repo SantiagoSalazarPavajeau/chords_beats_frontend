@@ -1,10 +1,32 @@
 class Song{
-    constructor(name, chordsJSON){
+    constructor(name, chords){
         this.name = name
-        this.chords = chordsJSON // create audios from chord with setter and getter methods
+        this.chords = chords // create audios from chord with setter and getter methods
         this.files = this.files()
         this.beat = this.beat()
-        this.audios = this.audios()
+        if (this.chords.length > 0){
+            this.audios = this.audios()
+        }
+    }
+
+    audios(){ //needs to delete audios when delete chords
+        let audios = []
+        
+            for(let chord of this.chordObjects()){ 
+                audios.push(chord.audio()) // creates audios from chords
+        }
+        return audios;
+    }
+
+    // set chords(chord){
+    //     this.audios.push(chord.audio()) // creates audios from chords
+    // }
+
+    addChord(chord){
+        if (this.chords.length > 0){
+            this.chords = []
+        }
+        this.chords.push(chord)
     }
 
     beat(){
@@ -29,14 +51,16 @@ class Song{
         return files;
     }
 
-    audios(){
-        let audios = []
-        for(let chord of this.chords){
-            let audio = document.createElement("audio")
-            audio.src = chord.file
-            audios.push(audio)
-        }
-        return audios;
-    } 
+  
+
+    // updateAudios(){
+    //     let audios = []
+    //     for(let chord of this.chords){
+    //         let audio = document.createElement("audio")
+    //         audio.src = chord.file
+    //         audios.push(audio)
+    //     }
+    //     return audios;
+    // } 
 
 }
