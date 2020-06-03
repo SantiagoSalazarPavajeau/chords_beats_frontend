@@ -86,8 +86,9 @@ class Adapter{
     }
 
     renderSongButton(song){ //better called load songs? this is specific dom manipulation/html
+    
         song = song.attributes
-
+        
         let chordObjs = []
         
         for(let chord of song.chords){
@@ -237,7 +238,7 @@ class Adapter{
         let saveButton = document.createElement("button")
         saveButton.innerText = "Save Song"
         saveButton.addEventListener("click", ()=>{
-            console.log(this.newSong)
+            // console.log(this.newSong)
             this.saveSong(this.newSong)
         })
         trackBtns.appendChild(saveButton)
@@ -259,8 +260,8 @@ class Adapter{
         }
         return fetch(`${this.baseURL}/songs`, postObj)
             .then(resp => resp.json())
-            .then(json=> console.log(json)) //this.renderSongButton(json)) //error is here
-            .catch(error => alert("Cant render song"))
+            .then(json=> this.renderSongButton(json.data)) //error is here
+            .catch(error => alert(`Cant render song and ${error}`))
     }
 
     
