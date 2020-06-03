@@ -12,7 +12,7 @@ class Song{
     audios(){ //needs to delete audios when delete chords
         let audios = []
         
-            for(let chord of this.chordObjects()){ 
+            for(let chord of this.chords){ 
                 audios.push(chord.audio()) // creates audios from chords
         }
         return audios;

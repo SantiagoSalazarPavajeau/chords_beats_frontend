@@ -9,7 +9,7 @@ class Adapter{
         this.renderPauseButton()
         this.newSong = this.newSong()
         this.saveSongButton()
-        
+        this.track()
 
         // this.getSong()
         // this.updateSong()
@@ -29,14 +29,14 @@ class Adapter{
         addIcon.innerHTML = `<svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"/>
                          </svg>`
-        let audio = chord.audio() // use chord obj method to create audio tag from file
+
         chordButton.addEventListener("click", ()=> { // add chord to new song
-            let trackChord = new Chord(chord.name, chord.file)
-            // trackChord.edit_id = Math.floor(Math.random() * Math.random() * 1000)
+            let trackChord = new Chord(chord.name, chord.file) // # 1 creates random edit_id for chord buttons added from chord card
+            // the chord created here was already created on load of new song
             this.newSong.chords.push(trackChord) //add chord object to song object chords attribute
             // this.newSong.audios.push(trackChord.audio())
             this.newSong.audios()
-            audio.play() //play chord audio
+            chord.audio().play() //play chord audio
             this.track()
             // console.log(this.newSong)
         
@@ -59,11 +59,11 @@ class Adapter{
         while (trackCard.firstChild) {
             trackCard.firstChild.remove();
         }
-        for (let trackChord of this.newSong.chords){
+        for (let newSongChord of this.newSong.chords){
             let chordButtonTrack = document.createElement("button") //create these buttons from new song chords
             chordButtonTrack.className = "button btn-dark"
             chordButtonTrack.href = "#"
-            chordButtonTrack.innerText = trackChord.name
+            chordButtonTrack.innerText = newSongChord.name
             let minus = document.createElement("span")
             minus.innerHTML = `<svg class="bi bi-dash-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm2 7.5a.5.5 0 000 1h8a.5.5 0 000-1H4z" clip-rule="evenodd"/>
@@ -72,13 +72,12 @@ class Adapter{
             chordButtonTrack.appendChild(minus)
             trackCard.appendChild(chordButtonTrack)
             chordButtonTrack.addEventListener("click", (e)=>{
-                // console.log(this.newSong.audios.filter((newSongAudio)=>{return parseInt(newSongAudio.id) !== trackChord.edit_id}))
-                this.newSong.chords = this.newSong.chords.filter((chord)=>{return chord.edit_id !== trackChord.edit_id})
-                this.newSong.audios()
-                debugger
-
-                trackChord.audio().pause()
-                trackChord.audio().currentTime = 0
+                
+                this.newSong.chords = this.newSong.chords.filter((chord)=>{return chord.edit_id !== newSongChord.edit_id})
+                this.newSong.audios  = this.newSong.audios.filter((audio)=> {return parseInt(audio.id) !== newSongChord.edit_id})// chords have different ids than audios
+                
+                newSongChord.audio().pause()
+                newSongChord.audio().currentTime = 0
                 chordButtonTrack.parentNode.removeChild(chordButtonTrack)
                 // console.log(this.newSong)
                 
@@ -86,11 +85,46 @@ class Adapter{
         }
     }
 
+    renderSongButton(song){ //better called load songs? this is specific dom manipulation/html
+        song = song.attributes
+
+        let chordObjs = []
+        
+        for(let chord of song.chords){
+            chordObjs.push(new Chord(chord.name, chord.file)) // # 3 creates random edit_id for chord buttons created on new song on load of track these chord buttons are stored in this.newSong
+        } // the button on track
+        
+        const songObj = new Song(song.name, chordObjs)
+        let songsCard = document.getElementById("songs")
+        let songButton = document.createElement("button")
+        let br = document.createElement("br")
+        songButton.className = "button btn-dark"
+        songButton.innerText = songObj.name
+        songButton.addEventListener("click", ()=> {
+            
+            this.playSong(songObj)
+
+        }) // add event listener to button to play song
+        
+        songsCard.appendChild(songButton)
+        songsCard.appendChild(br)
+
+    }
+
     newSong(){ //catches new chords being added as well as name and returns a new song object
         let nameInput = document.getElementById("songName")
-        let chords = []
-        let song = new Song(nameInput, chords)
-    
+        
+        let chordData = [ "F.wav ", "C.wav ", "Em.wav ", "F.wav "]// this is empty so no audios are created
+        
+        let chordObjs = []
+
+        for(let string of chordData){
+            chordObjs.push(new Chord(`${string.substring(0, string.length - 5)} `, `assets/chords/${string}`)) // # 3 creates random edit_id for chord buttons created on new song on load of track these chord buttons are stored in this.newSong
+        } // the button on track
+
+        let song = new Song(nameInput, chordObjs)
+
+
         nameInput.addEventListener("focus", (event)=>{
             if(nameInput.value === "**New Song Title**"){
                 event.target.value = ""
@@ -103,6 +137,55 @@ class Adapter{
 
         return song;
     }
+
+    playSong(song) {
+        
+        // song.audios()
+        let allAudios = document.querySelectorAll("audio")
+            
+        for(let audio of allAudios){
+            audio.pause()
+            audio.currentTime = 0
+        }
+        
+        let playAudio = function(index){
+                            return function(){
+                                if (index < song.audios.length -1 ){
+                                    song.audios[index].currentTime = 0
+                                index += 1
+                                song.audios[index].play()
+                                } else{
+                                    clearInterval(playInterval)
+                                    clearInterval(stopInterval)
+                                    
+                                    song.beat.pause()
+                                    song.beat.currentTime = 0;
+                              
+                                }
+                                
+                            }
+                        }
+            
+        let stopAudio = function(index){
+                            return function(){
+                                if (index < song.audios.length){
+                                    song.audios[index].pause()
+                                    song.audios[index].currentTime = 0;
+                                
+                                } 
+                                
+                            }
+                        }
+        song.audios[0].play()
+        song.beat.play()
+        
+        let i = 0
+        const playInterval = setInterval(playAudio(i), 2000)
+        const stopInterval = setInterval(stopAudio(i), 1700)
+        
+    }
+
+    
 
     renderPlayButton(){
         let trackBtns = document.getElementById("track-btns")
@@ -141,61 +224,7 @@ class Adapter{
     }
     
 
-    playSong(song) {
-        song.audios()
-        let allAudios = document.querySelectorAll("audio")
-            
-        for(let audio of allAudios){
-            audio.pause()
-            audio.currentTime = 0
-        }
-        
-        let playAudio = function(index){
-                            return function(){
-                                if (index < song.audios.length -1 ){
-                                    song.audios[index].currentTime = 0
-                                index += 1
-                                song.audios[index].play()
-                                } else{
-                                    clearInterval(playInterval)
-                                    clearInterval(stopInterval)
-                                    // let allAudios = document.querySelectorAll("audio")
-            
-                                    // for(let audio of allAudios){
-                                    //     audio.pause()
-                                    //     audio.currentTime = 0
-                                    // }
-                                    // console.log(this)
-                                    // this.newSong.beat.pause()
-                                    // this.newSong.beat.currentTime = 0
-                                    song.beat.pause()
-                                    song.beat.currentTime = 0;
-                                    console.log('playInterval')
-                                    console.log('stopInterval')
-                                }
-                                
-                            }
-                        }
-            
-        let stopAudio = function(index){
-                            return function(){
-                                if (index < song.audios.length){
-                                    song.audios[index].pause()
-                                    song.audios[index].currentTime = 0;
-                                
-                                } 
-                                
-                            }
-                        }
-        debugger
-        song.audios[0].play()
-        song.beat.play()
-        
-        let i = 0
-        const playInterval = setInterval(playAudio(i), 2000)
-        const stopInterval = setInterval(stopAudio(i), 1700)
-        
-    }
+    
 
     getSongs(){
         return fetch(`${this.baseURL}/songs`)
@@ -230,29 +259,11 @@ class Adapter{
         }
         return fetch(`${this.baseURL}/songs`, postObj)
             .then(resp => resp.json())
-            .then(json=> this.renderSongButton(json))
-            .catch(error => alert(error))
+            .then(json=> console.log(json)) //this.renderSongButton(json)) //error is here
+            .catch(error => alert("Cant render song"))
     }
 
-    renderSongButton(song){ //better called load songs? this is specific dom manipulation/html
-        song = song.attributes
-        const songObj = new Song(song.name, song.chords)
-        // console.log(songObj)
-        let songsCard = document.getElementById("songs")
-        let songButton = document.createElement("button")
-        let br = document.createElement("br")
-        songButton.className = "button btn-dark"
-        songButton.innerText = songObj.name
-        songButton.addEventListener("click", ()=> {
-            // console.log(songObj.audios())
-            this.playSong(songObj) // how to find this song?
-            // this.newSong.beat.play()
-        }) // add event listener to button to play song
-        
-        songsCard.appendChild(songButton)
-        songsCard.appendChild(br)
-
-    }
+    
 
     
 

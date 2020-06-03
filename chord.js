@@ -3,7 +3,7 @@ class Chord{
         this.name = name
         this.file = file
         this.edit_id = Math.floor(Math.random() * Math.random() * 1000)
-        this.audio()
+        // this.audio = this.audio()
     }
 
     audio(){

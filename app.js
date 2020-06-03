@@ -14,6 +14,7 @@ class App{
                 //need to manipulate songs json
                 // or fix the get request link
                 // console.log(songs.data)
+                this.adapter.newSong
                 for(let song of songs.data){
                     this.adapter.renderSongButton(song) 
                 }
@@ -25,9 +26,8 @@ class App{
         let chordData = ["A.wav ", "Ab.wav ", "Am.wav ", "Bb.wav ", "C.wav ", "Dm.wav ", "Em.wav ", "F.wav ", "Gm.wav "]
         let chordObjs = []
         for(let string of chordData){
-            chordObjs.push(new Chord(`${string.substring(0, string.length - 5)} `, `assets/chords/${string}`))
+            chordObjs.push(new Chord(`${string.substring(0, string.length - 5)} `, `assets/chords/${string}`)) // # 2 creates random edit_id
         }
-        // console.log(chordObjs)
         for(let chord of chordObjs){
             this.adapter.addChordButton(chord) // send chord object
         }
