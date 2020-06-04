@@ -83,10 +83,11 @@ class Adapter{
             // the chord created here was already created on load of new song
             this.newSong.chords.push(trackChord) //add chord object to song object chords attribute
             this.newSong.audios.push(trackChord.audio())
+            this.newSong.files.push(trackChord.file)
             // this.newSong.audios()
             chord.audio().play() //play chord audio
             this.track()
-            // console.log(this.newSong)
+            console.log(this.newSong)
         
         }) // add event listener to button to play
 
@@ -123,6 +124,11 @@ class Adapter{
                 
                 this.newSong.chords = this.newSong.chords.filter((chord)=>{return chord.edit_id !== newSongChord.edit_id})
                 this.newSong.audios  = this.newSong.audios.filter((audio)=> {return parseInt(audio.id) !== newSongChord.edit_id})// chords have different ids than audios
+                this.newSong.files  = []
+                for(let chord of this.newSong.chords){
+                    this.newSong.files.push(chord.file)
+                }
+                // console.log(this.newSong)
                 
                 newSongChord.audio().pause()
                 newSongChord.audio().currentTime = 0
@@ -274,8 +280,6 @@ class Adapter{
                                 if (index < song.audios.length){
                                     song.audios[index].pause()
                                     song.audios[index].currentTime = 0;
-                                    
-                                
                                 } 
                                 
                             }
@@ -359,7 +363,14 @@ class Adapter{
         }
         return fetch(`${this.baseURL}/songs`, postObj)
             .then(resp => resp.json())
-            .then(json=> this.renderSongButton(json.data)) //error is here
+            .then(json=> {
+                let chordObjs=[]
+                for(let chord of json.data.attributes.chords){
+                    chordObjs.push(new Chord(chord.name, chord.file))
+                }
+                let song = new Song(json.data.attributes.name, chordObjs)
+                this.renderSongButton(song)
+            }) 
             .catch(error => alert(`Cant render song and ${error}`))
     }
 
