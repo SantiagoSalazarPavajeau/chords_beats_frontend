@@ -28,23 +28,22 @@ class Adapter{
         return fetch(`${this.baseURL}/songs`)
                     .then(resp => resp.json()) // returns json object
                     .then((songs) => {
-                        let chordObjs = []
+                        
 
                         for(let song of songs.data){
-
+                            let chordObjs = []
                             for(let chord of song.attributes.chords){
                                 chordObjs.push(new Chord(chord.name, chord.file))
                             }
-                            const songObj = new Song(song.attributes.name, chordObjs)
+                            let songObj = new Song(song.attributes.name, chordObjs)
                             
                             this.allSongs.push(songObj)
                         }
-                        
                         for(let song of this.allSongs){
                             
                             this.renderSongButton(song) 
                         }
-                        this.allSongs.push(this.newSong)
+                        
                     })
                     .catch(error => alert(error))
     }
@@ -336,8 +335,16 @@ class Adapter{
             for(let interval of this.intervals){
                 clearInterval(interval)
             }
-            this.newSong.beat.pause()
-            this.newSong.beat.currentTime = 0
+            for(let song of this.allSongs){
+                song.beat.pause()
+                song.beat.currentTime = 0
+            }
+            const songButtons = document.getElementsByClassName("button btn-dark song")
+            for(let songButton of songButtons){
+                songButton.disabled = false
+            }
+
+
           
         })
         trackBtns.appendChild(pauseButton)
