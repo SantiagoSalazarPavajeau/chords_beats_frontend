@@ -257,8 +257,9 @@ class Adapter{
                             return function(){
                                 if (index < song.audios.length -1 ){
                                     song.audios[index].currentTime = 0
-                                index += 1
-                                song.audios[index].play()
+                                    song.audios[index].pause()
+                                    index += 1
+                                    song.audios[index].play()
                                 } else{
                                     clearInterval(playInterval)
                                     clearInterval(stopInterval)
@@ -280,6 +281,7 @@ class Adapter{
                                 if (index < song.audios.length){
                                     song.audios[index].pause()
                                     song.audios[index].currentTime = 0;
+                                    
                                 } 
                                 
                             }
@@ -289,7 +291,7 @@ class Adapter{
         
         let i = 0
         const playInterval = setInterval(playAudio(i), 2000)
-        const stopInterval = setInterval(stopAudio(i), 1500)
+        const stopInterval = setInterval(stopAudio(i), 1900)
         
     }
 
@@ -365,13 +367,15 @@ class Adapter{
             .then(resp => resp.json())
             .then(json=> {
                 let chordObjs=[]
+
                 for(let chord of json.data.attributes.chords){
                     chordObjs.push(new Chord(chord.name, chord.file))
                 }
                 let song = new Song(json.data.attributes.name, chordObjs)
+
                 this.renderSongButton(song)
             }) 
-            .catch(error => alert(`Cant render song and ${error}`))
+            .catch(error => alert(`Cant render new song and ${error}`))
     }
 
     
