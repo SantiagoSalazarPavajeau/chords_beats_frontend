@@ -149,6 +149,7 @@ class Adapter{
             a.href = "#"
             dropdownMenu.appendChild(a)
             a.addEventListener("click", ()=>{
+                document.getElementById("stop").click()
                 const newBeat = document.createElement("audio")
                 newBeat.src = `assets/beats/${beat}`
                 this.newSong.beat = newBeat
@@ -184,29 +185,14 @@ class Adapter{
         songButton.innerText = songObj.name
         songButton.addEventListener("click", ()=> {
             
-            // for(let audio of allAudios){
-            //     audio.pause()
-            //     audio.currentTime = 0
-            // }
-            // console.log(this.allSongs)
-            // let pause = () => {
-            //     for(let song of this.allSongs){
-            //         for(let chord of song.chords){
-            //             chord.audio().pause
-            //         }
-            //     }
-            // }
-            // const pausePromise = new Promise((pause,failureToPause)=>{
-            //     pause()
-            // }).then(()=>{this.playSong(songObj)})
-            this.playSong(songObj)
+   
+            
             const songButtons = document.getElementsByClassName("button btn-dark song")
-            // console.log(songButtons)
             for(let songButton of songButtons){
                 songButton.disabled = true
             }
-            
-            // console.log(songObj)
+            document.getElementById("play").disabled = true
+            this.playSong(songObj)
             
 
         }) // add event listener to button to play song
@@ -262,14 +248,17 @@ class Adapter{
                                     song.audios[index].play()
                                 } else{
                                     clearInterval(playInterval)
-                                    clearInterval(stopInterval)
+                                    // clearInterval(stopInterval)
                                     
                                     song.beat.pause()
                                     song.beat.currentTime = 0;
                                     const songButtons = document.getElementsByClassName("button btn-dark song")
+                                    document.getElementById("play").disabled = false
                                     for(let songButton of songButtons){
                                         songButton.disabled = false
                                     }
+                                    
+
                               
                                 }
                                 
@@ -291,9 +280,9 @@ class Adapter{
         
         let i = 0
         const playInterval = setInterval(playAudio(i), 2000)
-        const stopInterval = setInterval(stopAudio(i), 1900)
+        // const stopInterval = setInterval(stopAudio(i), 1900)
         this.intervals.push(playInterval)
-        this.intervals.push(playInterval)
+        // this.intervals.push(playInterval)
 
     }
 
@@ -302,6 +291,7 @@ class Adapter{
     renderPlayButton(){
         let trackBtns = document.getElementById("track-btns")
         let playButton = document.createElement("button")
+        playButton.id = "play"
         playButton.innerHTML = `<svg class="bi bi-play-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                                 </svg>`
@@ -319,6 +309,7 @@ class Adapter{
     renderPauseButton(){
         let trackBtns = document.getElementById("track-btns")
         let pauseButton = document.createElement("button")
+        pauseButton.id = "stop"
         pauseButton.innerHTML = `<svg class="bi bi-stop-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5 3.5h6A1.5 1.5 0 0 1 12.5 5v6a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 11V5A1.5 1.5 0 0 1 5 3.5z"/>
                                 </svg>`
@@ -343,6 +334,10 @@ class Adapter{
             for(let songButton of songButtons){
                 songButton.disabled = false
             }
+            this.newSong.beat.pause()
+            this.newSong.beat.currentTime = 0
+            document.getElementById("play").disabled = false
+
 
 
           
@@ -360,8 +355,13 @@ class Adapter{
         let saveButton = document.createElement("button")
         saveButton.innerText = "Save Song"
         saveButton.addEventListener("click", ()=>{
+            
             // console.log(this.newSong)
-            this.saveSong(this.newSong)
+            if(typeof this.newSong.name === "object"){
+                alert("Javi please add a name")
+            }else{
+                this.saveSong(this.newSong)
+            }
         })
         trackBtns.appendChild(saveButton)
     }
