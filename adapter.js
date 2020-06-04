@@ -16,6 +16,7 @@ class Adapter{
         this.renderPauseButton()
         this.saveSongButton()
         this.track()
+        this.intervals = []
         
 
         // this.getSong()
@@ -292,7 +293,9 @@ class Adapter{
         let i = 0
         const playInterval = setInterval(playAudio(i), 2000)
         const stopInterval = setInterval(stopAudio(i), 1900)
-        
+        this.intervals.push(playInterval)
+        this.intervals.push(playInterval)
+
     }
 
     
@@ -325,6 +328,13 @@ class Adapter{
             for(let audio of allAudios){
                 audio.pause()
                 audio.currentTime = 0
+            }
+            for(let audio of this.newSong.audios){
+                audio.pause()
+                audio.currentTime = 0
+            }
+            for(let interval of this.intervals){
+                clearInterval(interval)
             }
             this.newSong.beat.pause()
             this.newSong.beat.currentTime = 0
