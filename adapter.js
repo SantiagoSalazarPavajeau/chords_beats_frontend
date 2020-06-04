@@ -5,15 +5,61 @@ class Adapter{
     constructor(){
         this.baseURL = "http://localhost:3000"
         this.getSongs()
+        this.allSongs = []
+        // this.loadSongs()
+        this.loadChords()
         this.renderPlayButton()
         this.renderPauseButton()
         this.newSong = this.newSong()
         this.saveSongButton()
         this.track()
+        
 
         // this.getSong()
         // this.updateSong()
         // this.deleteSong()
+    }
+
+    getSongs(){
+        return fetch(`${this.baseURL}/songs`)
+                    .then(resp => resp.json()) // returns json object
+                    .then((songs) => {
+
+                        let chordObjs = []
+
+                        for(let song of songs.data){
+
+                            for(let chord of song.attributes.chords){
+                                chordObjs.push(new Chord(chord.name, chord.file))
+                            }
+                            const songObj = new Song(song.attributes.name, chordObjs)
+                            
+                            this.allSongs.push(songObj)
+                        }
+                        
+                        for(let song of this.allSongs){
+                            
+                            this.renderSongButton(song) 
+                        }
+                        this.allSongs.push(this.newSong)
+                    })
+                    .catch(error => alert(error))
+    }
+
+    // loadSongs(){ //loads songs as complex objects from server in the form of buttons on songs card
+    //     this.getSongs()
+            
+    // }
+
+    loadChords(){
+        let chordData = ["A.wav ", "Ab.wav ", "Am.wav ", "Bb.wav ", "C.wav ", "Dm.wav ", "Em.wav ", "F.wav ", "Gm.wav "]
+        let chordObjs = []
+        for(let string of chordData){
+            chordObjs.push(new Chord(`${string.substring(0, string.length - 5)} `, `assets/chords/${string}`)) // # 2 creates random edit_id
+        }
+        for(let chord of chordObjs){
+            this.addChordButton(chord) // send chord object
+        }
     }
     
 
@@ -85,17 +131,18 @@ class Adapter{
         }
     }
 
-    renderSongButton(song){ //better called load songs? this is specific dom manipulation/html
+    renderSongButton(songObj){ //better called load songs? this is specific dom manipulation/html
     
-        song = song.attributes
+        // song = song.attributes
         
-        let chordObjs = []
+        // let chordObjs = []
         
-        for(let chord of song.chords){
-            chordObjs.push(new Chord(chord.name, chord.file)) // # 3 creates random edit_id for chord buttons created on new song on load of track these chord buttons are stored in this.newSong
-        } // the button on track
+        // for(let chord of song.chords){
+        //     chordObjs.push(new Chord(chord.name, chord.file)) // # 3 creates random edit_id for chord buttons created on new song on load of track these chord buttons are stored in this.newSong
+        // } // the button on track
         
-        const songObj = new Song(song.name, chordObjs)
+        // let allSongs = []
+        // allSongs.push(songObj)
         let songsCard = document.getElementById("songs")
         let songButton = document.createElement("button")
         let br = document.createElement("br")
@@ -103,6 +150,12 @@ class Adapter{
         songButton.innerText = songObj.name
         songButton.addEventListener("click", ()=> {
             
+            // for(let audio of allAudios){
+            //     audio.pause()
+            //     audio.currentTime = 0
+            // }
+            // console.log(allSongs)
+            console.log(songObj)
             this.playSong(songObj)
 
         }) // add event listener to button to play song
@@ -227,11 +280,7 @@ class Adapter{
 
     
 
-    getSongs(){
-        return fetch(`${this.baseURL}/songs`)
-                    .then(resp => resp.json()) // returns json object
-                    .catch(error => alert(error))
-    }
+    
 
     saveSongButton(){
         let trackBtns = document.getElementById("track-header")
