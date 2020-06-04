@@ -31,7 +31,8 @@ class Song{
 
     beat(){
         const beat = document.createElement("audio")
-        beat.src = "assets/beats/DQ.wav"
+
+        beat.src = "assets/beats/Analog.wav"
         return beat;
     }
 

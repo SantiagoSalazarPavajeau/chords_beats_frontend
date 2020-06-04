@@ -6,11 +6,14 @@ class Adapter{
         this.baseURL = "http://localhost:3000"
         this.getSongs()
         this.allSongs = []
+        
         // this.loadSongs()
         this.loadChords()
+        this.newSong = this.newSong()
+
+        this.beatDropdown()
         this.renderPlayButton()
         this.renderPauseButton()
-        this.newSong = this.newSong()
         this.saveSongButton()
         this.track()
         
@@ -24,7 +27,6 @@ class Adapter{
         return fetch(`${this.baseURL}/songs`)
                     .then(resp => resp.json()) // returns json object
                     .then((songs) => {
-
                         let chordObjs = []
 
                         for(let song of songs.data){
@@ -52,10 +54,10 @@ class Adapter{
     // }
 
     loadChords(){
-        let chordData = ["A.wav ", "Ab.wav ", "Am.wav ", "Bb.wav ", "C.wav ", "Dm.wav ", "Em.wav ", "F.wav ", "Gm.wav "]
+        let chordData = ["A.wav", "Ab.wav", "Am.wav", "B.wav", "Bb.wav", "Bm.wav", "C.wav", "Cm.wav", "D.wav", "Db.wav", "Dm.wav", "E.wav", "Eb.wav", "Em.wav", "F.wav", "Fm.wav", "G.wav", "Gb.wav", "Gm.wav"]
         let chordObjs = []
         for(let string of chordData){
-            chordObjs.push(new Chord(`${string.substring(0, string.length - 5)} `, `assets/chords/${string}`)) // # 2 creates random edit_id
+            chordObjs.push(new Chord(`${string.substring(0, string.length - 4)} `, `assets/chords/${string}`)) // # 2 creates random edit_id
         }
         for(let chord of chordObjs){
             this.addChordButton(chord) // send chord object
@@ -125,10 +127,35 @@ class Adapter{
                 newSongChord.audio().pause()
                 newSongChord.audio().currentTime = 0
                 chordButtonTrack.parentNode.removeChild(chordButtonTrack)
-                // console.log(this.newSong)
                 
             })
         }
+    }
+
+    beatDropdown(){
+        const dropdownMenu = document.getElementById("dropdown-menu")
+        const dropdownButton = document.getElementById("dropdownMenuButton")
+        const beats = ["Analog.wav", "Acoustic.wav", "Modern.wav"]
+        for(let beat of beats){
+            let a = document.createElement("a")
+            a.innerText = beat.substring(0, beat.length - 4)
+            a.className = "dropdown-item"
+            a.href = "#"
+            dropdownMenu.appendChild(a)
+            a.addEventListener("click", ()=>{
+                const newBeat = document.createElement("audio")
+                newBeat.src = `assets/beats/${beat}`
+                this.newSong.beat = newBeat
+                dropdownButton.innerText = beat.substring(0, beat.length - 4)
+            })
+        }
+        // const beat = document.createElement("audio")
+        //     beat.src = "assets/beats/DQ.wav"
+        // debugger
+
+        // dropdown.appendChild(beatButton)
+        // dropdown.appendChild(dropdownMenu)
+        // trackFooter.appendChild(dropdown)
     }
 
     renderSongButton(songObj){ //better called load songs? this is specific dom manipulation/html
@@ -306,7 +333,7 @@ class Adapter{
     
 
     saveSongButton(){
-        let trackBtns = document.getElementById("track-header")
+        let trackBtns = document.getElementById("track-btns")
         let saveButton = document.createElement("button")
         saveButton.innerText = "Save Song"
         saveButton.addEventListener("click", ()=>{
