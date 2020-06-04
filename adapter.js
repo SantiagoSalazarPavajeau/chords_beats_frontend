@@ -146,7 +146,8 @@ class Adapter{
         let songsCard = document.getElementById("songs")
         let songButton = document.createElement("button")
         let br = document.createElement("br")
-        songButton.className = "button btn-dark"
+        songButton.className = "button btn-dark song"
+        // songButton.id = "song"
         songButton.innerText = songObj.name
         songButton.addEventListener("click", ()=> {
             
@@ -154,9 +155,26 @@ class Adapter{
             //     audio.pause()
             //     audio.currentTime = 0
             // }
-            // console.log(allSongs)
-            console.log(songObj)
+            // console.log(this.allSongs)
+            // let pause = () => {
+            //     for(let song of this.allSongs){
+            //         for(let chord of song.chords){
+            //             chord.audio().pause
+            //         }
+            //     }
+            // }
+            // const pausePromise = new Promise((pause,failureToPause)=>{
+            //     pause()
+            // }).then(()=>{this.playSong(songObj)})
             this.playSong(songObj)
+            const songButtons = document.getElementsByClassName("button btn-dark song")
+            // console.log(songButtons)
+            for(let songButton of songButtons){
+                songButton.disabled = true
+            }
+            
+            // console.log(songObj)
+            
 
         }) // add event listener to button to play song
         
@@ -214,6 +232,10 @@ class Adapter{
                                     
                                     song.beat.pause()
                                     song.beat.currentTime = 0;
+                                    const songButtons = document.getElementsByClassName("button btn-dark song")
+                                    for(let songButton of songButtons){
+                                        songButton.disabled = false
+                                    }
                               
                                 }
                                 
@@ -225,6 +247,7 @@ class Adapter{
                                 if (index < song.audios.length){
                                     song.audios[index].pause()
                                     song.audios[index].currentTime = 0;
+                                    
                                 
                                 } 
                                 
