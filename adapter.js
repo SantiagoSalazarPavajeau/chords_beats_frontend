@@ -6,22 +6,15 @@ class Adapter{
         this.baseURL = "http://localhost:3000"
         this.getSongs()
         this.allSongs = []
-        
-        // this.loadSongs()
         this.loadChords()
         this.newSong = this.newSong()
-
         this.beatDropdown()
         this.renderPlayButton()
         this.renderPauseButton()
         this.saveSongButton()
         this.track()
         this.intervals = []
-        
-
-        // this.getSong()
         // this.updateSong()
-        // this.deleteSong()
     }
 
     deleteSong(song){
@@ -31,11 +24,7 @@ class Adapter{
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            // body: JSON.stringify({
-            //     song: {
-            //         id: song.id
-            //     }
-            // })
+  
         }
         return fetch(`${this.baseURL}/songs/${song.id}`, deleteObj)
             .then(resp => resp.json())
@@ -69,10 +58,7 @@ class Adapter{
                     .catch(error => alert(error))
     }
 
-    // loadSongs(){ //loads songs as complex objects from server in the form of buttons on songs card
-    //     this.getSongs()
-            
-    // }
+ 
 
     loadChords(){
         let chordData = ["A.wav", "Ab.wav", "Am.wav", "B.wav", "Bb.wav", "Bm.wav", "C.wav", "Cm.wav", "D.wav", "Db.wav", "Dm.wav", "E.wav", "Eb.wav", "Em.wav", "F.wav", "Fm.wav", "G.wav", "Gb.wav", "Gm.wav"]
@@ -211,7 +197,9 @@ class Adapter{
         deleteSongButton.addEventListener("click", ()=> {
            if (confirm("Are you sure you want to delete this song?")){
                 this.deleteSong(songObj)
-                // chordButtonTrack.parentNode.removeChild(chordButtonTrack)
+                songButton.parentNode.removeChild(songButton)
+                deleteSongButton.parentNode.removeChild(deleteSongButton)
+                br.parentNode.removeChild(br)
            }else{
                alert("Close call!")
            }
