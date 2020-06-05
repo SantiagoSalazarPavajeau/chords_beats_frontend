@@ -1,7 +1,8 @@
 class Song{
-    constructor(name, chords){
+    constructor(name, chords, id){
         this.name = name
         this.chords = chords // create audios from chord with setter and getter methods
+        this.id = id
         this.files = this.files()
         this.beat = this.beat()
         if (this.chords.length > 0){

@@ -24,6 +24,27 @@ class Adapter{
         // this.deleteSong()
     }
 
+    deleteSong(song){
+        let deleteObj = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            // body: JSON.stringify({
+            //     song: {
+            //         id: song.id
+            //     }
+            // })
+        }
+        return fetch(`${this.baseURL}/songs/${song.id}`, deleteObj)
+            .then(resp => resp.json())
+            .then(()=> {
+                alert("song deleted")
+            }) 
+            .catch(error => alert(`Couldn't delete song and ${error}`))
+    }
+
     getSongs(){
         return fetch(`${this.baseURL}/songs`)
                     .then(resp => resp.json()) // returns json object
@@ -35,8 +56,8 @@ class Adapter{
                             for(let chord of song.attributes.chords){
                                 chordObjs.push(new Chord(chord.name, chord.file))
                             }
-                            let songObj = new Song(song.attributes.name, chordObjs)
-                            
+                            let songObj = new Song(song.attributes.name, chordObjs, song.id)
+
                             this.allSongs.push(songObj)
                         }
                         for(let song of this.allSongs){
@@ -189,15 +210,16 @@ class Adapter{
         deleteSongButton.innerText = " X"
         deleteSongButton.addEventListener("click", ()=> {
            if (confirm("Are you sure you want to delete this song?")){
-                
+                this.deleteSong(songObj)
+                // chordButtonTrack.parentNode.removeChild(chordButtonTrack)
            }else{
                alert("Close call!")
            }
         })
 
         
-        songButton.appendChild(deleteSongButton)
         songsCard.appendChild(songButton)
+        songsCard.appendChild(deleteSongButton)
         songsCard.appendChild(br)
 
     }
@@ -388,7 +410,7 @@ class Adapter{
                 for(let chord of json.data.attributes.chords){
                     chordObjs.push(new Chord(chord.name, chord.file))
                 }
-                let song = new Song(json.data.attributes.name, chordObjs)
+                let song = new Song(json.data.attributes.name, chordObjs, json.data.id)
                 this.allSongs.push(song)
 
                 this.renderSongButton(song)
