@@ -358,7 +358,7 @@ class Adapter{
             
             // console.log(this.newSong)
             if(typeof this.newSong.name === "object"){
-                alert("Javi please add a name")
+                alert("First add a name to the song!")
             }else{
                 this.saveSong(this.newSong)
             }
