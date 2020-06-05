@@ -21,6 +21,11 @@ cd into the front end directory and run:
 open index.html
 ```
 
+# Ruby on Rails Backend:
+
+It is a API only rails app with Posgress as a database instead of SQL Lite for deployment into heroku.
+
+Some gems used are Fast Json API for the serializer/service, and no-CORS, to be able to run on the local environment for development.
 
 #Backend with Postgress : https://github.com/SantiagoSalazarPavajeau/chords_beats_backend
 
