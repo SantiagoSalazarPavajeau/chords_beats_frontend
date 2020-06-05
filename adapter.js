@@ -165,27 +165,14 @@ class Adapter{
         // trackFooter.appendChild(dropdown)
     }
 
-    renderSongButton(songObj){ //better called load songs? this is specific dom manipulation/html
+    renderSongButton(songObj){ //called on load and on save of song
     
-        // song = song.attributes
-        
-        // let chordObjs = []
-        
-        // for(let chord of song.chords){
-        //     chordObjs.push(new Chord(chord.name, chord.file)) // # 3 creates random edit_id for chord buttons created on new song on load of track these chord buttons are stored in this.newSong
-        // } // the button on track
-        
-        // let allSongs = []
-        // allSongs.push(songObj)
         let songsCard = document.getElementById("songs")
         let songButton = document.createElement("button")
         let br = document.createElement("br")
         songButton.className = "button btn-dark song"
-        // songButton.id = "song"
         songButton.innerText = songObj.name
         songButton.addEventListener("click", ()=> {
-            
-   
             
             const songButtons = document.getElementsByClassName("button btn-dark song")
             for(let songButton of songButtons){
@@ -196,7 +183,20 @@ class Adapter{
             
 
         }) // add event listener to button to play song
+
+        let deleteSongButton = document.createElement("button")
+        deleteSongButton.className = "btn btn-dark btn-sm"
+        deleteSongButton.innerText = " X"
+        deleteSongButton.addEventListener("click", ()=> {
+           if (confirm("Are you sure you want to delete this song?")){
+                
+           }else{
+               alert("Close call!")
+           }
+        })
+
         
+        songButton.appendChild(deleteSongButton)
         songsCard.appendChild(songButton)
         songsCard.appendChild(br)
 
@@ -389,6 +389,7 @@ class Adapter{
                     chordObjs.push(new Chord(chord.name, chord.file))
                 }
                 let song = new Song(json.data.attributes.name, chordObjs)
+                this.allSongs.push(song)
 
                 this.renderSongButton(song)
             }) 
