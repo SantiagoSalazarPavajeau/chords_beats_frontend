@@ -3,7 +3,7 @@
 
 class Adapter{
     constructor(){
-        this.baseURL = "https://thawing-temple-12065.herokuapp.com/"
+        this.baseURL = "http://localhost:3000" //"https://thawing-temple-12065.herokuapp.com/"
         this.getSongs()
         this.allSongs = []
         this.loadChords()
@@ -148,7 +148,7 @@ class Adapter{
     beatDropdown(){
         const dropdownMenu = document.getElementById("dropdown-menu")
         const dropdownButton = document.getElementById("dropdownMenuButton")
-        const beats = ["Analog.wav", "Acoustic.wav", "Modern.wav"]
+        const beats = ["Analog.wav", "Acoustic.wav", "Groovy.wav", "Hip.wav"]
         for(let beat of beats){
             let a = document.createElement("a")
             a.innerText = beat.substring(0, beat.length - 4)
