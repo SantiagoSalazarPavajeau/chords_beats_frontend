@@ -3,7 +3,7 @@
 
 class Adapter{
     constructor(){
-        this.baseURL = "http://localhost:3000" //"https://thawing-temple-12065.herokuapp.com/"
+        this.baseURL = "https://thawing-temple-12065.herokuapp.com/" // "http://localhost:3000"
         this.getSongs()
         this.allSongs = []
         this.loadChords()
