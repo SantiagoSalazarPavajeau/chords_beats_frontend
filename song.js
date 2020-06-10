@@ -53,6 +53,46 @@ class Song{
         return files;
     }
 
+    // renderSongButton(){ //called on load and on save of song
+    
+    //     let songsCard = document.getElementById("songs")
+    //     let songButton = document.createElement("button")
+    //     let br = document.createElement("br")
+    //     songButton.className = "button btn-dark song"
+    //     songButton.innerText = this.name
+    //     songButton.addEventListener("click", ()=> {
+            
+    //         const songButtons = document.getElementsByClassName("button btn-dark song")
+    //         for(let songButton of songButtons){
+    //             songButton.disabled = true
+    //         }
+    //         document.getElementById("play").disabled = true
+    //         this.adapter.playSong()
+            
+
+    //     }) // add event listener to button to play song
+
+    //     let deleteSongButton = document.createElement("button")
+    //     deleteSongButton.className = "btn btn-dark btn-sm"
+    //     deleteSongButton.innerText = " X"
+    //     deleteSongButton.addEventListener("click", ()=> {
+    //        if (confirm("Are you sure you want to delete this song?")){
+    //             this.adapter.deleteSong(this)
+    //             songButton.parentNode.removeChild(songButton)
+    //             deleteSongButton.parentNode.removeChild(deleteSongButton)
+    //             br.parentNode.removeChild(br)
+    //        }else{
+    //            alert("Close call!")
+    //        }
+    //     })
+
+        
+    //     songsCard.appendChild(songButton)
+    //     songsCard.appendChild(deleteSongButton)
+    //     songsCard.appendChild(br)
+
+    // }
+
   
 
     // updateAudios(){

@@ -14,6 +14,7 @@ class Adapter{
         this.saveSongButton()
         this.track()
         this.intervals = []
+       
         // this.updateSong()
     }
 
@@ -36,7 +37,7 @@ class Adapter{
 
     getSongs(){
         return fetch(`${this.baseURL}/songs`)
-                    .then(resp => resp.json()) // returns json object
+                    .then(resp => resp.json())
                     .then((songs) => {
                         
 
@@ -239,8 +240,27 @@ class Adapter{
         return song;
     }
 
-    playSong(song){
+    playSong = (song) => {
         
+        
+        
+        
+        
+        
+        // let context = new AudioContext()
+        // let bufferLoader = new BufferLoader(context, song.files, this.afterLoading)
+
+        // bufferLoader.load()
+
+        // let afterLoading = (bufferList)=>{
+        //     let source = context.createBufferSource();
+        //     source.buffer = bufferList[0]
+        //     source.connect(context.destination)
+        //     source.start(0)
+        // }
+        
+
+
         // song.audios()
         let allAudios = document.querySelectorAll("audio")
             
@@ -275,16 +295,16 @@ class Adapter{
                             }
                         }
             
-        let stopAudio = function(index){
-                            return function(){
-                                if (index < song.audios.length){
-                                    song.audios[index].pause()
-                                    song.audios[index].currentTime = 0;
+        // let stopAudio = function(index){
+        //                     return function(){
+        //                         if (index < song.audios.length){
+        //                             song.audios[index].pause()
+        //                             song.audios[index].currentTime = 0;
                                     
-                                } 
+        //                         } 
                                 
-                            }
-                        }
+        //                     }
+        //                 }
         song.audios[0].play()
         song.beat.play()
         
@@ -376,7 +396,7 @@ class Adapter{
         trackBtns.appendChild(saveButton)
     }
 
-    saveSong(song){ // this should be set on an event listener in userInterface
+    saveSong(song){ 
         let postObj = {
             method: "POST",
             headers: {
@@ -400,7 +420,7 @@ class Adapter{
                 }
                 let song = new Song(json.data.attributes.name, chordObjs, json.data.id)
                 this.allSongs.push(song)
-
+                
                 this.renderSongButton(song)
             }) 
             .catch(error => alert(`Cant render new song and ${error}`))
