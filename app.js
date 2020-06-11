@@ -1,4 +1,5 @@
 // bridge between all modules
+import adapter from './adapter'
 
 class App{
     constructor(){

@@ -1,7 +1,7 @@
 // all fetch requests
 
 
-class Adapter{
+export default class Adapter{
     constructor(){
         this.baseURL = "https://thawing-temple-12065.herokuapp.com/" // "http://localhost:3000"
         this.getSongs()
