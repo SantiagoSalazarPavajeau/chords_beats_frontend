@@ -1,3 +1,4 @@
+// export default 
 class Chord{
     constructor(name, file){
         this.name = name
@@ -12,9 +13,6 @@ class Chord{
         audio.id = this.edit_id
         return audio;
     }
-
-
-
 
 }
 

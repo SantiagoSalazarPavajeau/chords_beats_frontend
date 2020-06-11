@@ -1,7 +1,11 @@
 // all fetch requests
+// import Chord from "./chord.js"
+// import Song from './song.js'
 
 
-export default class Adapter{
+
+// export default 
+class Adapter{
     constructor(){
         this.baseURL = "https://thawing-temple-12065.herokuapp.com/" // "http://localhost:3000"
         this.getSongs()

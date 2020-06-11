@@ -1,3 +1,6 @@
+// import Chord from "./chord.js"
+
+// export default 
 class Song{
     constructor(name, chords, id){
         this.name = name

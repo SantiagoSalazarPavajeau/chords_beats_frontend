@@ -1,6 +1,7 @@
 // bridge between all modules
-import adapter from './adapter'
+// import Adapter from './adapter.js'
 
+// export 
 class App{
     constructor(){
         this.adapter = new Adapter
