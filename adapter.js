@@ -3,6 +3,8 @@
 // import Song from './song.js'
 
 
+// TO IMPROVE PERFORMANCE CREATE AUDIO TAGS ONLY ON PLAY
+
 
 // export default 
 class Adapter{
