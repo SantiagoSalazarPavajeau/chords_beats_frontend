@@ -1,5 +1,12 @@
 class Keyboard{
-    constructor(){
-        
+    constructor(name, file){
+        this.name = name
+        this.file = file
+    }
+
+    audio(){
+        let audio = document.createElement("audio")
+        audio.src = this.file
+        return audio;
     }
 }
