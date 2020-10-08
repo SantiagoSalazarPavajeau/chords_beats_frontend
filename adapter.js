@@ -14,6 +14,8 @@ class Adapter{
         this.getSongs()
         this.allSongs = []
         // this.loadChords()
+        this.handleChordButtons()
+        this.handleKeyboardNotes()
         this.newSong = this.newSong()
         this.beatDropdown()
         this.renderPlayButton()
@@ -21,7 +23,7 @@ class Adapter{
         this.saveSongButton()
         this.track()
         this.intervals = []
-        this.handleChordButtons()
+
        
         // this.updateSong()
     }
@@ -122,14 +124,31 @@ class Adapter{
     // }
 
     handleChordButtons(){
-        const buttons = document.querySelectorAll(".chord")
-        console.log(buttons)
-        for(let button of buttons){
-            button.addEventListener("click", (e) =>{
-                const audio = document.getElementById(button.dataset.note)
+        const chordButtons = document.querySelectorAll(".chord")
+        for(let chordButton of chordButtons){
+            chordButton.addEventListener("click", (e) =>{
+                const audio = document.getElementById(chordButton.dataset.note)
                 audio.play()
+                const chordName = chordButton.innerText.substring(0, chordButton.innerText.length - 1)
+                this.newSong.chords.push(new Chord(chordName, `assets/chords/${chordName}.wav`)) //add chord object to song object chords attribute
+                this.newSong.audios.push(audio)
+                this.newSong.files.push(audio.src)
+                console.log(this.newSong.chords)
             })
         }
+    }
+
+    handleKeyboardNotes(){
+        document.addEventListener("keydown", (e) => {
+            const allNotes = document.querySelectorAll(".bass")
+            for(let playingNote of allNotes){
+                playingNote.pause()
+                playingNote.currentTime = 0
+            }
+            const note = document.getElementById(e.code)
+            note.play()
+        })
+
     }
 
     track(){
@@ -237,11 +256,12 @@ class Adapter{
     newSong(){ //catches new chords being added as well as name and returns a new song object
         let nameInput = document.getElementById("songName")
         
-        let chordData = [ "F.wav ", "C.wav ", "Em.wav ", "F.wav "]// this is empty so no audios are created
+        let chordData = [ "F.wav ", "C.wav ", "Em.wav ", "F.wav ", "F.wav ", "C.wav ", "Em.wav ", "F.wav "]// this is empty so no audios are created
         
         let chordObjs = []
 
         for(let string of chordData){
+            // console.log(`${string.substring(0, string.length - 5)} `)
             chordObjs.push(new Chord(`${string.substring(0, string.length - 5)} `, `assets/chords/${string}`)) // # 3 creates random edit_id for chord buttons created on new song on load of track these chord buttons are stored in this.newSong
         } // the button on track
 
