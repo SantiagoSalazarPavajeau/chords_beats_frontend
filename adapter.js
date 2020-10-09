@@ -21,7 +21,7 @@ class Adapter{
         this.renderPlayButton()
         this.renderPauseButton()
         this.saveSongButton()
-        this.track()
+        this.updateTrack()
         this.intervals = []
 
        
@@ -134,6 +134,7 @@ class Adapter{
                 this.newSong.audios.push(audio)
                 this.newSong.files.push(audio.src)
                 console.log(this.newSong.chords)
+                this.updateTrack()
             })
         }
     }
@@ -151,11 +152,12 @@ class Adapter{
 
     }
 
-    track(){
+    updateTrack(){
         let trackCard = document.getElementById("track") //this could go in new Song method
         while (trackCard.firstChild) {
             trackCard.firstChild.remove();
         }
+        console.log(this.newSong.chords)
         for (let newSongChord of this.newSong.chords){
             let chordButtonTrack = document.createElement("button") //create these buttons from new song chords
             chordButtonTrack.className = "button btn-dark"
