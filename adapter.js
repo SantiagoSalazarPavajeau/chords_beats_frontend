@@ -118,13 +118,15 @@ class Adapter{
 
             chordButtonTrack.appendChild(minus)
             trackCard.appendChild(chordButtonTrack)
-            console.log(`${this.newSong.audios} before click`) // audios before
+            console.log(`Chord Objects: ${this.newSong.chords} before remove from track`) // audios before
+            console.log(`Audio Tags Before:${this.newSong.audios} before remove from track`) // audios before
+            // these could be refactored to be to get rid of apparent duplication of array functionality
             chordButtonTrack.addEventListener("click", (e)=>{
                 
                 this.newSong.chords = this.newSong.chords.filter((chord)=>{return chord.edit_id !== newSongChord.edit_id})
-                
+                console.log(`Chord Objects: ${this.newSong.chords} in newSong.chords after remove from track`)
                 this.newSong.audios  = this.newSong.audios.filter((audio)=> {return parseInt(audio.id) !== newSongChord.edit_id})// chords have different ids than audios
-                console.log(`${this.newSong.audios} in newSong.audios after remove`) // audios before
+                console.log(`Audio Tags: ${this.newSong.audios} in newSong.audios after remove from track`)
                 // bug in delete of 
                 this.newSong.files  = []
                 for(let chord of this.newSong.chords){
