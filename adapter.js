@@ -82,7 +82,7 @@ class Adapter{
                 this.newSong.chords.push(new Chord(chordName, `assets/chords/${chordName}.wav`)) //add chord object to song object chords attribute
                 this.newSong.audios.push(audio)
                 this.newSong.files.push(audio.src)
-                console.log(this.newSong.chords)
+                // console.log(this.newSong.chords)
                 this.updateTrack()
             })
         }
