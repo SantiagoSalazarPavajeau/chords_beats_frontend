@@ -11,6 +11,7 @@ class Chord{
         let audio = document.createElement("audio")
         audio.src = this.file
         audio.id = this.edit_id
+        audio.className = "chord-audio"
         return audio;
     }
 

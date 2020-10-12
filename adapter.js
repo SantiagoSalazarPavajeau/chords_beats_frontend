@@ -118,18 +118,22 @@ class Adapter{
 
             chordButtonTrack.appendChild(minus)
             trackCard.appendChild(chordButtonTrack)
+            console.log(`${this.newSong.audios} before click`) // audios before
             chordButtonTrack.addEventListener("click", (e)=>{
                 
                 this.newSong.chords = this.newSong.chords.filter((chord)=>{return chord.edit_id !== newSongChord.edit_id})
                 
                 this.newSong.audios  = this.newSong.audios.filter((audio)=> {return parseInt(audio.id) !== newSongChord.edit_id})// chords have different ids than audios
-                
+                console.log(`${this.newSong.audios} in newSong.audios after remove`) // audios before
+                // bug in delete of 
                 this.newSong.files  = []
                 for(let chord of this.newSong.chords){
                     this.newSong.files.push(chord.file)
                 }
                 // console.log(this.newSong)
-                
+                // select all chord audios from document to control that they are updating correctly
+                // const allChordAudiosInDom = document.querySelectorAll(".chord-audio")
+                // console.log(allChordAudiosInDom) // no bug in creation of extra DOM chord audios it stays at 19
                 newSongChord.audio().pause()
                 newSongChord.audio().currentTime = 0
                 chordButtonTrack.parentNode.removeChild(chordButtonTrack)
