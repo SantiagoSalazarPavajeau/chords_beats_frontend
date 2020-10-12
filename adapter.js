@@ -71,62 +71,11 @@ class Adapter{
                     .catch(error => alert(error))
     }
 
- 
-
-    // loadChords(){
-    //     let chordData = ["A.wav", "Ab.wav", "Am.wav", "B.wav", "Bb.wav", "Bm.wav", "C.wav", "Cm.wav", "D.wav", "Db.wav", "Dm.wav", "E.wav", "Eb.wav", "Em.wav", "F.wav", "Fm.wav", "G.wav", "Gb.wav", "Gm.wav"]
-    //     let chordObjs = []
-    //     for(let string of chordData){
-    //         chordObjs.push(new Chord(`${string.substring(0, string.length - 4)} `, `assets/chords/${string}`)) // # 2 creates random edit_id
-    //     }
-    //     for(let chord of chordObjs){
-    //         this.addChordButton(chord) // send chord object
-    //     }
-    // }
-    
-
-    // addChordButton(chord){ 
-
-    //     let chordsCard = document.getElementById("chords")
-    //     let chordButton = document.createElement("button")
-    //      //  <a href="#" class="btn btn-info">C</a>
-    //      chordButton.className = "button btn-outline-dark"
-    //      chordButton.href = "#" 
-    //      chordButton.innerText = chord.name
-    //     let addIcon = document.createElement("span")
-    //     addIcon.innerHTML = `<svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    //                         <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"/>
-    //                      </svg>`
-
-    //     chordButton.addEventListener("click", ()=> { // add chord to new song
-    //         let trackChord = new Chord(chord.name, chord.file) // # 1 creates random edit_id for chord buttons added from chord card
-    //         // the chord created here was already created on load of new song
-    //         this.newSong.chords.push(trackChord) //add chord object to song object chords attribute
-    //         this.newSong.audios.push(trackChord.audio())
-    //         this.newSong.files.push(trackChord.file)
-    //         // this.newSong.audios()
-    //         chord.audio().play() //play chord audio
-    //         this.track()
-    //         console.log(this.newSong)
-        
-    //     }) // add event listener to button to play
-
-        
-       
-       
-    //     chordsCard.appendChild(chordButton) // could add it to a list to fix spacing
-    //     // div.appendChild(playButton)
-    //     // chordsCard.appendChild(audio)
-    //     chordButton.appendChild(addIcon)
-        
-    //     // add chord to song array
-
-    // }
-
     handleChordButtons(){
         const chordButtons = document.querySelectorAll(".chord")
         for(let chordButton of chordButtons){
             chordButton.addEventListener("click", (e) =>{
+                this.updateTrack()
                 const audio = document.getElementById(chordButton.dataset.note)
                 audio.play()
                 const chordName = chordButton.innerText.substring(0, chordButton.innerText.length - 1)
@@ -155,9 +104,8 @@ class Adapter{
     updateTrack(){
         let trackCard = document.getElementById("track") //this could go in new Song method
         while (trackCard.firstChild) {
-            trackCard.firstChild.remove();
+            trackCard.firstChild.remove(); // remove all old chords and add new ones? what if i could only add the new one with an algo like in react
         }
-        console.log(this.newSong.chords)
         for (let newSongChord of this.newSong.chords){
             let chordButtonTrack = document.createElement("button") //create these buttons from new song chords
             chordButtonTrack.className = "button btn-dark"
@@ -173,7 +121,9 @@ class Adapter{
             chordButtonTrack.addEventListener("click", (e)=>{
                 
                 this.newSong.chords = this.newSong.chords.filter((chord)=>{return chord.edit_id !== newSongChord.edit_id})
+                
                 this.newSong.audios  = this.newSong.audios.filter((audio)=> {return parseInt(audio.id) !== newSongChord.edit_id})// chords have different ids than audios
+                
                 this.newSong.files  = []
                 for(let chord of this.newSong.chords){
                     this.newSong.files.push(chord.file)
@@ -183,6 +133,7 @@ class Adapter{
                 newSongChord.audio().pause()
                 newSongChord.audio().currentTime = 0
                 chordButtonTrack.parentNode.removeChild(chordButtonTrack)
+                this.updateTrack()
                 
             })
         }
@@ -371,6 +322,7 @@ class Adapter{
         
         playButton.addEventListener("click", ()=> {
             //select all audios from the track card or use the song array
+            this.updateTrack()
             this.playSong(this.newSong)
             // this.newSong.beat.play()
             
@@ -418,11 +370,6 @@ class Adapter{
         trackBtns.appendChild(pauseButton)
     }
     
-
-    
-
-    
-
     saveSongButton(){
         let trackBtns = document.getElementById("track-btns")
         let saveButton = document.createElement("button")
@@ -470,7 +417,55 @@ class Adapter{
     }
 
     
+    // loadChords(){
+    //     let chordData = ["A.wav", "Ab.wav", "Am.wav", "B.wav", "Bb.wav", "Bm.wav", "C.wav", "Cm.wav", "D.wav", "Db.wav", "Dm.wav", "E.wav", "Eb.wav", "Em.wav", "F.wav", "Fm.wav", "G.wav", "Gb.wav", "Gm.wav"]
+    //     let chordObjs = []
+    //     for(let string of chordData){
+    //         chordObjs.push(new Chord(`${string.substring(0, string.length - 4)} `, `assets/chords/${string}`)) // # 2 creates random edit_id
+    //     }
+    //     for(let chord of chordObjs){
+    //         this.addChordButton(chord) // send chord object
+    //     }
+    // }
+    
 
+    // addChordButton(chord){ 
+
+    //     let chordsCard = document.getElementById("chords")
+    //     let chordButton = document.createElement("button")
+    //      //  <a href="#" class="btn btn-info">C</a>
+    //      chordButton.className = "button btn-outline-dark"
+    //      chordButton.href = "#" 
+    //      chordButton.innerText = chord.name
+    //     let addIcon = document.createElement("span")
+    //     addIcon.innerHTML = `<svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    //                         <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"/>
+    //                      </svg>`
+
+    //     chordButton.addEventListener("click", ()=> { // add chord to new song
+    //         let trackChord = new Chord(chord.name, chord.file) // # 1 creates random edit_id for chord buttons added from chord card
+    //         // the chord created here was already created on load of new song
+    //         this.newSong.chords.push(trackChord) //add chord object to song object chords attribute
+    //         this.newSong.audios.push(trackChord.audio())
+    //         this.newSong.files.push(trackChord.file)
+    //         // this.newSong.audios()
+    //         chord.audio().play() //play chord audio
+    //         this.track()
+    //         console.log(this.newSong)
+        
+    //     }) // add event listener to button to play
+
+        
+       
+       
+    //     chordsCard.appendChild(chordButton) // could add it to a list to fix spacing
+    //     // div.appendChild(playButton)
+    //     // chordsCard.appendChild(audio)
+    //     chordButton.appendChild(addIcon)
+        
+    //     // add chord to song array
+
+    // }
     
 
 }
