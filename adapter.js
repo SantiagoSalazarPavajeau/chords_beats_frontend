@@ -64,7 +64,7 @@ class Adapter{
                         }
                         for(let song of this.allSongs){
                             
-                            this.renderSongButton(song) 
+                            this.renderSongButton(song) // make this song.renderSongButton for example and other methods so classes take some of the code from the adapter
                         }
                         
                     })
@@ -213,7 +213,7 @@ class Adapter{
     }
 
     newSong(){ //catches new chords being added as well as name and returns a new song object
-        let nameInput = document.getElementById("songName")
+        let nameInput = document.getElementById("songName") // name to initialize object
         
         let chordData = [ "F.wav ", "C.wav ", "Em.wav ", "F.wav ", "F.wav ", "C.wav ", "Em.wav ", "F.wav "]// this is empty so no audios are created
         
