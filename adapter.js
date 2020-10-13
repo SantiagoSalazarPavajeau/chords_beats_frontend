@@ -30,22 +30,7 @@ class Adapter{
 
 
 
-    deleteSong(song){
-        let deleteObj = {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-  
-        }
-        return fetch(`${this.baseURL}/songs/${song.id}`, deleteObj)
-            .then(resp => resp.json())
-            .then(()=> {
-                alert("song deleted")
-            }) 
-            .catch(error => alert(`Couldn't delete song and ${error}`))
-    }
+
 
     getSongs(){
         return fetch(`${this.baseURL}/songs`)
@@ -64,7 +49,7 @@ class Adapter{
                         }
                         for(let song of this.allSongs){
                             
-                            this.renderSongButton(song) // make this song.renderSongButton for example and other methods so classes take some of the code from the adapter
+                            song.renderSongButton() // make this song.renderSongButton for example and other methods so classes take some of the code from the adapter
                         }
                         
                     })
@@ -77,6 +62,7 @@ class Adapter{
             chordButton.addEventListener("click", (e) =>{
                 this.updateTrack()
                 const audio = document.getElementById(chordButton.dataset.note)
+                // console.log(chordButton.dataset.note)
                 audio.play()
                 const chordName = chordButton.innerText.substring(0, chordButton.innerText.length - 1)
                 this.newSong.chords.push(new Chord(chordName, `assets/chords/${chordName}.wav`)) //add chord object to song object chords attribute
@@ -118,15 +104,15 @@ class Adapter{
 
             chordButtonTrack.appendChild(minus)
             trackCard.appendChild(chordButtonTrack)
-            console.log(`Chord Objects: ${this.newSong.chords} before remove from track`) // audios before
-            console.log(`Audio Tags Before:${this.newSong.audios} before remove from track`) // audios before
+            // console.log(`Chord Objects: ${this.newSong.chords} before remove from track`) // audios before
+            // console.log(`Audio Tags Before:${this.newSong.audios} before remove from track`) // audios before
             // these could be refactored to be to get rid of apparent duplication of array functionality
             chordButtonTrack.addEventListener("click", (e)=>{
                 
                 this.newSong.chords = this.newSong.chords.filter((chord)=>{return chord.edit_id !== newSongChord.edit_id})
-                console.log(`Chord Objects: ${this.newSong.chords} in newSong.chords after remove from track`)
+                // console.log(`Chord Objects: ${this.newSong.chords} in newSong.chords after remove from track`)
                 this.newSong.audios  = this.newSong.audios.filter((audio)=> {return parseInt(audio.id) !== newSongChord.edit_id})// chords have different ids than audios
-                console.log(`Audio Tags: ${this.newSong.audios} in newSong.audios after remove from track`)
+                // console.log(`Audio Tags: ${this.newSong.audios} in newSong.audios after remove from track`)
                 // bug in delete of 
                 this.newSong.files  = []
                 for(let chord of this.newSong.chords){
@@ -172,45 +158,7 @@ class Adapter{
         // trackFooter.appendChild(dropdown)
     }
 
-    renderSongButton(songObj){ //called on load and on save of song
     
-        let songsCard = document.getElementById("songs")
-        let songButton = document.createElement("button")
-        let br = document.createElement("br")
-        songButton.className = "button btn-dark song"
-        songButton.innerText = songObj.name
-        songButton.addEventListener("click", ()=> {
-            
-            const songButtons = document.getElementsByClassName("button btn-dark song")
-            for(let songButton of songButtons){
-                songButton.disabled = true
-            }
-            document.getElementById("play").disabled = true
-            this.playSong(songObj)
-            
-
-        }) // add event listener to button to play song
-
-        let deleteSongButton = document.createElement("button")
-        deleteSongButton.className = "btn btn-dark btn-sm"
-        deleteSongButton.innerText = " X"
-        deleteSongButton.addEventListener("click", ()=> {
-           if (confirm("Are you sure you want to delete this song?")){
-                this.deleteSong(songObj)
-                songButton.parentNode.removeChild(songButton)
-                deleteSongButton.parentNode.removeChild(deleteSongButton)
-                br.parentNode.removeChild(br)
-           }else{
-               alert("Close call!")
-           }
-        })
-
-        
-        songsCard.appendChild(songButton)
-        songsCard.appendChild(deleteSongButton)
-        songsCard.appendChild(br)
-
-    }
 
     newSong(){ //catches new chords being added as well as name and returns a new song object
         let nameInput = document.getElementById("songName") // name to initialize object
@@ -240,81 +188,7 @@ class Adapter{
         return song;
     }
 
-    playSong = (song) => {
-        
-        
-        
-        
-        
-        
-        // let context = new AudioContext()
-        // let bufferLoader = new BufferLoader(context, song.files, this.afterLoading)
 
-        // bufferLoader.load()
-
-        // let afterLoading = (bufferList)=>{
-        //     let source = context.createBufferSource();
-        //     source.buffer = bufferList[0]
-        //     source.connect(context.destination)
-        //     source.start(0)
-        // }
-        
-
-
-        // song.audios()
-        let allAudios = document.querySelectorAll("audio")
-            
-        for(let audio of allAudios){
-            audio.pause()
-            audio.currentTime = 0
-        }
-        
-        let playAudio = function(index){
-                            return function(){
-                                if (index < song.audios.length -1 ){
-                                    song.audios[index].currentTime = 0
-                                    song.audios[index].pause()
-                                    index += 1
-                                    song.audios[index].play()
-                                } else{
-                                    clearInterval(playInterval)
-                                    // clearInterval(stopInterval)
-                                    
-                                    song.beat.pause()
-                                    song.beat.currentTime = 0;
-                                    const songButtons = document.getElementsByClassName("button btn-dark song")
-                                    document.getElementById("play").disabled = false
-                                    for(let songButton of songButtons){
-                                        songButton.disabled = false
-                                    }
-                                    
-
-                              
-                                }
-                                
-                            }
-                        }
-            
-        // let stopAudio = function(index){
-        //                     return function(){
-        //                         if (index < song.audios.length){
-        //                             song.audios[index].pause()
-        //                             song.audios[index].currentTime = 0;
-                                    
-        //                         } 
-                                
-        //                     }
-        //                 }
-        song.audios[0].play()
-        song.beat.play()
-        
-        let i = 0
-        const playInterval = setInterval(playAudio(i), 2000)
-        // const stopInterval = setInterval(stopAudio(i), 1900)
-        this.intervals.push(playInterval)
-        // this.intervals.push(playInterval)
-
-    }
 
     
 
@@ -329,7 +203,7 @@ class Adapter{
         playButton.addEventListener("click", ()=> {
             //select all audios from the track card or use the song array
             this.updateTrack()
-            this.playSong(this.newSong)
+            this.newSong.playSong()
             // this.newSong.beat.play()
             
         }) // add event listener to button to play 
@@ -471,6 +345,133 @@ class Adapter{
         
     //     // add chord to song array
 
+    // }
+
+    // renderSongButton(songObj){ //called on load and on save of song
+    
+    //     let songsCard = document.getElementById("songs")
+    //     let songButton = document.createElement("button")
+    //     let br = document.createElement("br")
+    //     songButton.className = "button btn-dark song"
+    //     songButton.innerText = songObj.name
+    //     songButton.addEventListener("click", ()=> {
+            
+    //         const songButtons = document.getElementsByClassName("button btn-dark song")
+    //         for(let songButton of songButtons){
+    //             songButton.disabled = true
+    //         }
+    //         document.getElementById("play").disabled = true
+    //         this.playSong(songObj)
+            
+
+    //     }) // add event listener to button to play song
+
+    //     let deleteSongButton = document.createElement("button")
+    //     deleteSongButton.className = "btn btn-dark btn-sm"
+    //     deleteSongButton.innerText = " X"
+    //     deleteSongButton.addEventListener("click", ()=> {
+    //        if (confirm("Are you sure you want to delete this song?")){
+    //             this.deleteSong(songObj)
+    //             songButton.parentNode.removeChild(songButton)
+    //             deleteSongButton.parentNode.removeChild(deleteSongButton)
+    //             br.parentNode.removeChild(br)
+    //        }else{
+    //            alert("Close call!")
+    //        }
+    //     })
+
+        
+    //     songsCard.appendChild(songButton)
+    //     songsCard.appendChild(deleteSongButton)
+    //     songsCard.appendChild(br)
+
+    // }
+
+        // playSong = (song) => {   
+    //     // let context = new AudioContext()
+    //     // let bufferLoader = new BufferLoader(context, song.files, this.afterLoading)
+
+    //     // bufferLoader.load()
+
+    //     // let afterLoading = (bufferList)=>{
+    //     //     let source = context.createBufferSource();
+    //     //     source.buffer = bufferList[0]
+    //     //     source.connect(context.destination)
+    //     //     source.start(0)
+    //     // }
+        
+
+
+    //     // song.audios()
+    //     let allAudios = document.querySelectorAll("audio")
+            
+    //     for(let audio of allAudios){
+    //         audio.pause()
+    //         audio.currentTime = 0
+    //     }
+        
+    //     let playAudio = function(index){
+    //                         return function(){
+    //                             if (index < song.audios.length -1 ){
+    //                                 song.audios[index].currentTime = 0
+    //                                 song.audios[index].pause()
+    //                                 index += 1
+    //                                 song.audios[index].play()
+    //                             } else{
+    //                                 clearInterval(playInterval)
+    //                                 // clearInterval(stopInterval)
+                                    
+    //                                 song.beat.pause()
+    //                                 song.beat.currentTime = 0;
+    //                                 const songButtons = document.getElementsByClassName("button btn-dark song")
+    //                                 document.getElementById("play").disabled = false
+    //                                 for(let songButton of songButtons){
+    //                                     songButton.disabled = false
+    //                                 }
+                                    
+
+                              
+    //                             }
+                                
+    //                         }
+    //                     }
+            
+    //     // let stopAudio = function(index){
+    //     //                     return function(){
+    //     //                         if (index < song.audios.length){
+    //     //                             song.audios[index].pause()
+    //     //                             song.audios[index].currentTime = 0;
+                                    
+    //     //                         } 
+                                
+    //     //                     }
+    //     //                 }
+    //     song.audios[0].play()
+    //     song.beat.play()
+        
+    //     let i = 0
+    //     const playInterval = setInterval(playAudio(i), 2000)
+    //     // const stopInterval = setInterval(stopAudio(i), 1900)
+    //     this.intervals.push(playInterval)
+    //     // this.intervals.push(playInterval)
+
+    // }
+
+        // deleteSong(song){
+    //     let deleteObj = {
+    //         method: "DELETE",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json"
+    //         },
+  
+    //     }
+    //     return fetch(`${this.baseURL}/songs/${song.id}`, deleteObj)
+    //         .then(resp => resp.json())
+    //         .then(()=> {
+    //             alert("song deleted")
+    //         }) 
+    //         .catch(error => alert(`Couldn't delete song and ${error}`))
     // }
     
 
