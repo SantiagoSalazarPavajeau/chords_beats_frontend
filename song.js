@@ -8,19 +8,19 @@ class Song{
         this.id = id
         this.files = this.files()
         this.beat = this.beat()
-        if (this.chords.length > 0){
-            this.audios = this.audios()
-        }
+        // if (this.chords.length > 0){
+        //     this.audios = this.audios()
+        // }
     }
 
-    audios(){ //needs to delete audios when delete chords
-        let audios = []
+    // audios(){ //needs to delete audios when delete chords
+    //     let audios = []
         
-            for(let chord of this.chords){ 
-                // audios.push(chord.audio()) // creates audios from chords
-        }
-        return audios;
-    }
+    //         for(let chord of this.chords){ 
+    //             // audios.push(chord.audio()) // creates audios from chords
+    //     }
+    //     return audios;
+    // }
 
     addChord(chord){
         if (this.chords.length > 0){
