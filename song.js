@@ -8,19 +8,15 @@ class Song{
         this.id = id
         this.files = this.files()
         this.beat = this.beat()
-        // if (this.chords.length > 0){
-        //     this.audios = this.audios()
-        // }
+        this.intervals = []
+
     }
 
-    // audios(){ //needs to delete audios when delete chords
-    //     let audios = []
-        
-    //         for(let chord of this.chords){ 
-    //             // audios.push(chord.audio()) // creates audios from chords
-    //     }
-    //     return audios;
-    // }
+    stop(){
+        for( let interval of this.intervals){
+            clearInterval(interval)
+        }
+    }
 
     addChord(chord){
         if (this.chords.length > 0){
@@ -55,21 +51,25 @@ class Song{
     playSong = () => {   
         let allAudios = document.querySelectorAll("audio")
             
-        for(let audio of allAudios){
-            audio.pause()
-            audio.currentTime = 0
+        for(let chord of this.chords){
+            chord.audio.pause()
+            chord.audio.currentTime = 0
         }
+        const songButtons = document.getElementsByClassName("button btn-dark song")
+            for(let songButton of songButtons){
+                songButton.disabled = true
+            }
+        document.getElementById("play").disabled = true
         
-        let playAudio = function(index){
-                            return function(){
-                                if (index < this.audios.length -1 ){
-                                    this.audios[index].currentTime = 0
-                                    this.audios[index].pause()
+        let playAudio = (index) => {
+                            return () => {
+                                if (index < this.chords.length -1 ){
+                                    this.chords[index].audio.currentTime = 0
+                                    this.chords[index].audio.pause()
                                     index += 1
-                                    this.audios[index].play()
+                                    this.chords[index].audio.play()
                                 } else{
                                     clearInterval(playInterval)
-                                    // clearInterval(stopInterval)
                                     
                                     this.beat.pause()
                                     this.beat.currentTime = 0;
@@ -86,24 +86,12 @@ class Song{
                             }
                         }
             
-        // let stopAudio = function(index){
-        //                     return function(){
-        //                         if (index < song.audios.length){
-        //                             song.audios[index].pause()
-        //                             song.audios[index].currentTime = 0;
-                                    
-        //                         } 
-                                
-        //                     }
-        //                 }
-        this.audios[0].play()
+        this.chords[0].audio.play()
         this.beat.play()
         
         let i = 0
         const playInterval = setInterval(playAudio(i), 2000)
-        // const stopInterval = setInterval(stopAudio(i), 1900)
         this.intervals.push(playInterval)
-        // this.intervals.push(playInterval)
 
     }
 
@@ -121,7 +109,7 @@ class Song{
                 songButton.disabled = true
             }
             document.getElementById("play").disabled = true
-            this.adapter.playSong()
+            this.playSong()
             
 
         }) // add event listener to button to play song
@@ -164,14 +152,6 @@ class Song{
             .catch(error => alert(`Couldn't delete song and ${error}`))
     }
 
-    // updateAudios(){
-    //     let audios = []
-    //     for(let chord of this.chords){
-    //         let audio = document.createElement("audio")
-    //         audio.src = chord.file
-    //         audios.push(audio)
-    //     }
-    //     return audios;
-    // } 
+
 
 }
