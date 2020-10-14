@@ -8,23 +8,15 @@ class Song{
         this.id = id
         this.files = this.files()
         this.beat = this.beat()
-        if (this.chords.length > 0){
-            this.audios = this.audios()
-        }
+        this.intervals = []
+
     }
 
-    audios(){ //needs to delete audios when delete chords
-        let audios = []
-        
-            for(let chord of this.chords){ 
-                audios.push(chord.audio()) // creates audios from chords
+    stop(){
+        for( let interval of this.intervals){
+            clearInterval(interval)
         }
-        return audios;
     }
-
-    // set chords(chord){
-    //     this.audios.push(chord.audio()) // creates audios from chords
-    // }
 
     addChord(chord){
         if (this.chords.length > 0){
@@ -56,56 +48,110 @@ class Song{
         return files;
     }
 
-    // renderSongButton(){ //called on load and on save of song
+    playSong = () => {   
+        let allAudios = document.querySelectorAll("audio")
+            
+        for(let chord of this.chords){
+            chord.audio.pause()
+            chord.audio.currentTime = 0
+        }
+        const songButtons = document.getElementsByClassName("button btn-dark song")
+            for(let songButton of songButtons){
+                songButton.disabled = true
+            }
+        document.getElementById("play").disabled = true
+        
+        let playAudio = (index) => {
+                            return () => {
+                                if (index < this.chords.length -1 ){
+                                    this.chords[index].audio.currentTime = 0
+                                    this.chords[index].audio.pause()
+                                    index += 1
+                                    this.chords[index].audio.play()
+                                } else{
+                                    clearInterval(playInterval)
+                                    
+                                    this.beat.pause()
+                                    this.beat.currentTime = 0;
+                                    const songButtons = document.getElementsByClassName("button btn-dark song")
+                                    document.getElementById("play").disabled = false
+                                    for(let songButton of songButtons){
+                                        songButton.disabled = false
+                                    }
+                                    
+
+                              
+                                }
+                                
+                            }
+                        }
+            
+        this.chords[0].audio.play()
+        this.beat.play()
+        
+        let i = 0
+        const playInterval = setInterval(playAudio(i), 2000)
+        this.intervals.push(playInterval)
+
+    }
+
+    renderSongButton(){ //called on load and on save of song
     
-    //     let songsCard = document.getElementById("songs")
-    //     let songButton = document.createElement("button")
-    //     let br = document.createElement("br")
-    //     songButton.className = "button btn-dark song"
-    //     songButton.innerText = this.name
-    //     songButton.addEventListener("click", ()=> {
+        let songsCard = document.getElementById("songs")
+        let songButton = document.createElement("button")
+        let br = document.createElement("br")
+        songButton.className = "button btn-dark song"
+        songButton.innerText = this.name
+        songButton.addEventListener("click", ()=> {
             
-    //         const songButtons = document.getElementsByClassName("button btn-dark song")
-    //         for(let songButton of songButtons){
-    //             songButton.disabled = true
-    //         }
-    //         document.getElementById("play").disabled = true
-    //         this.adapter.playSong()
+            const songButtons = document.getElementsByClassName("button btn-dark song")
+            for(let songButton of songButtons){
+                songButton.disabled = true
+            }
+            document.getElementById("play").disabled = true
+            this.playSong()
             
 
-    //     }) // add event listener to button to play song
+        }) // add event listener to button to play song
 
-    //     let deleteSongButton = document.createElement("button")
-    //     deleteSongButton.className = "btn btn-dark btn-sm"
-    //     deleteSongButton.innerText = " X"
-    //     deleteSongButton.addEventListener("click", ()=> {
-    //        if (confirm("Are you sure you want to delete this song?")){
-    //             this.adapter.deleteSong(this)
-    //             songButton.parentNode.removeChild(songButton)
-    //             deleteSongButton.parentNode.removeChild(deleteSongButton)
-    //             br.parentNode.removeChild(br)
-    //        }else{
-    //            alert("Close call!")
-    //        }
-    //     })
+        let deleteSongButton = document.createElement("button")
+        deleteSongButton.className = "btn btn-dark btn-sm"
+        deleteSongButton.innerText = " X"
+        deleteSongButton.addEventListener("click", ()=> {
+           if (confirm("Are you sure you want to delete this song?")){
+                this.deleteSong(this)
+                songButton.parentNode.removeChild(songButton)
+                deleteSongButton.parentNode.removeChild(deleteSongButton)
+                br.parentNode.removeChild(br)
+           }else{
+               alert("Close call!")
+           }
+        })
 
         
-    //     songsCard.appendChild(songButton)
-    //     songsCard.appendChild(deleteSongButton)
-    //     songsCard.appendChild(br)
+        songsCard.appendChild(songButton)
+        songsCard.appendChild(deleteSongButton)
+        songsCard.appendChild(br)
 
-    // }
+    }
 
+    deleteSong(song){
+        let deleteObj = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
   
+        }
+        return fetch(`${this.baseURL}/songs/${song.id}`, deleteObj)
+            .then(resp => resp.json())
+            .then(()=> {
+                alert("Song deleted")
+            }) 
+            .catch(error => alert(`Couldn't delete song and ${error}`))
+    }
 
-    // updateAudios(){
-    //     let audios = []
-    //     for(let chord of this.chords){
-    //         let audio = document.createElement("audio")
-    //         audio.src = chord.file
-    //         audios.push(audio)
-    //     }
-    //     return audios;
-    // } 
+
 
 }
