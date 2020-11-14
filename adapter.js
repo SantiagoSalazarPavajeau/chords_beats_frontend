@@ -68,14 +68,41 @@ class Adapter{
     }
 
     handleKeyboardNotes(){
-        document.addEventListener("keydown", (e) => {
-            const allNotes = document.querySelectorAll(".bass")
-            for(let playingNote of allNotes){
-                playingNote.pause()
-                playingNote.currentTime = 0
-            }
-            const note = document.getElementById(e.code)
-            note.play()
+
+        const synth = new Tone.Synth().toDestination();
+        synth.oscillator.type = "fmsawtooth"
+        synth.oscillator.modulationType = "triangle";
+
+        document.addEventListener("keydown",  (e) => {
+
+            switch (e.code) {
+                case "ShiftLeft":
+                  return synth.triggerAttackRelease("A1", "8n");
+                case "KeyZ":
+                  return synth.triggerAttackRelease("A#1", "8n");
+                case "KeyX":
+                  return synth.triggerAttackRelease("B1", "8n");
+                case "KeyC":
+                  return synth.triggerAttackRelease("C2", "8n");
+                case "KeyV":
+                  return synth.triggerAttackRelease("C#2", "8n");
+                case "KeyB":
+                  return synth.triggerAttackRelease("D2", "8n");
+                case "KeyN":
+                  return synth.triggerAttackRelease("D#2", "8n");
+                case "KeyM":
+                  return synth.triggerAttackRelease("E2", "8n");
+                case "Comma":
+                  return synth.triggerAttackRelease("F2", "8n");
+                case "Period":
+                  return synth.triggerAttackRelease("F#2", "8n");
+                case "Slash":
+                  return synth.triggerAttackRelease("G2", "8n");
+                case "ShiftRight":
+                  return synth.triggerAttackRelease("G#2", "8n");
+                default:
+                  return;
+              }
         })
 
     }
