@@ -1,3 +1,5 @@
+// import * as Tone from 'tone'
+
 class Keyboard{
     constructor(name, file){
         this.name = name
@@ -5,6 +7,8 @@ class Keyboard{
     }
 
     audio(){
+
+
         let audio = document.createElement("audio")
         audio.src = this.file
         return audio;
