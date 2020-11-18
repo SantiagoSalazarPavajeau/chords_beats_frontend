@@ -122,16 +122,12 @@ class Adapter{
 
             chordButtonTrack.appendChild(minus)
             trackCard.appendChild(chordButtonTrack)
-<<<<<<< HEAD
             // console.log(`Chord Objects: ${this.newSong.chords} before remove from track`) // audios before
             // console.log(`Audio Tags Before:${this.newSong.audios} before remove from track`) // audios before
             // // these could be refactored to be to get rid of apparent duplication of array functionality
-=======
->>>>>>> 83c830b66f928204f817d5e00771ec927d27cbd2
             chordButtonTrack.addEventListener("click", (e)=>{
                 // only use Song.chords as a source to the array of chords no files or audios on Song
                 this.newSong.chords = this.newSong.chords.filter((chord)=>{return chord.edit_id !== newSongChord.edit_id})
-<<<<<<< HEAD
                 // console.log(`Chord Objects: ${this.newSong.chords} in newSong.chords after remove from track`)
                 this.newSong.audios  = this.newSong.audios.filter((audio)=> {return parseInt(audio.id) !== newSongChord.edit_id})// chords have different ids than audios
                 // console.log(`Audio Tags: ${this.newSong.audios} in newSong.audios after remove from track`)
@@ -146,10 +142,6 @@ class Adapter{
                 // console.log(allChordAudiosInDom) // no bug in creation of extra DOM chord audios it stays at 19
                 newSongChord.audio().pause()
                 newSongChord.audio().currentTime = 0
-=======
-                newSongChord.audio.pause()
-                newSongChord.audio.currentTime = 0
->>>>>>> 83c830b66f928204f817d5e00771ec927d27cbd2
                 chordButtonTrack.parentNode.removeChild(chordButtonTrack)
                 this.updateTrack()
                 
