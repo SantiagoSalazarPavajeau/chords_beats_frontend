@@ -30,7 +30,6 @@ class Adapter{
                     .then((songs) => {
                         let loading = document.getElementById("loading")
                         loading.removeChild(loading.childNodes[0])
-                        console.log(loading)
                         for(let song of songs.data){
                             let chordObjs = []
                             for(let chord of song.attributes.chords){
@@ -70,6 +69,14 @@ class Adapter{
         const synth = new Tone.Synth().toDestination();
         synth.oscillator.type = "fmsawtooth"
         synth.oscillator.modulationType = "triangle";
+
+        const wavesButtons = document.querySelectorAll("button.waves")
+
+        for( let wavesButton of wavesButtons){
+            wavesButton.addEventListener("click", (e) => {
+                synth.oscillator.type = e.target.innerText.toLowerCase()
+            })
+        }
 
         document.addEventListener("keydown",  (e) => {
 
@@ -122,7 +129,7 @@ class Adapter{
 
             chordButtonTrack.appendChild(minus)
             trackCard.appendChild(chordButtonTrack)
-            
+
             chordButtonTrack.addEventListener("click", (e)=>{
 
                 this.newSong.chords = this.newSong.chords.filter((chord)=>{return chord.edit_id !== newSongChord.edit_id})
