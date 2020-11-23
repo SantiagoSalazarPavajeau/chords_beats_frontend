@@ -106,13 +106,12 @@ class Adapter{
     }
 
     updateTrack(){
-        let trackCard = document.getElementById("track") //this could go in new Song method
+        let trackCard = document.getElementById("track") 
         while (trackCard.firstChild) {
-            trackCard.firstChild.remove(); // remove all old chords and add new ones? what if i could only add the new one with an algo like in react
+            trackCard.firstChild.remove(); 
         }
         for (let newSongChord of this.newSong.chords){
-            // console.log(newSongChord.name)
-            let chordButtonTrack = document.createElement("button") //create these buttons from new song chords
+            let chordButtonTrack = document.createElement("button")
             chordButtonTrack.className = "button btn-dark"
             chordButtonTrack.href = "#"
             chordButtonTrack.innerText = newSongChord.name
@@ -123,24 +122,16 @@ class Adapter{
 
             chordButtonTrack.appendChild(minus)
             trackCard.appendChild(chordButtonTrack)
-            console.log(`Chord Objects: ${this.newSong.chords} before remove from track`) // audios before
-            // console.log(`Audio Tags Before:${this.newSong.audios} before remove from track`) // audios before
-            // // these could be refactored to be to get rid of apparent duplication of array functionality
+            
             chordButtonTrack.addEventListener("click", (e)=>{
-                // only use Song.chords as a source to the array of chords no files or audios on Song
+
                 this.newSong.chords = this.newSong.chords.filter((chord)=>{return chord.edit_id !== newSongChord.edit_id})
-                // console.log(`Chord Objects: ${this.newSong.chords} in newSong.chords after remove from track`)
-                // this.newSong.audios  = this.newSong.audios.filter((audio)=> {return parseInt(audio.id) !== newSongChord.edit_id})// chords have different ids than audios
-                console.log(`Audio Tags: ${this.newSong.chords} in newSong.audios after remove from track`)
-                // bug in delete of 
+
                 this.newSong.files  = []
                 for(let chord of this.newSong.chords){
                     this.newSong.files.push(chord.file)
                 }
-                // console.log(this.newSong)
-                // select all chord audios from document to control that they are updating correctly
-                // const allChordAudiosInDom = document.querySelectorAll(".chord-audio")
-                // console.log(allChordAudiosInDom) // no bug in creation of extra DOM chord audios it stays at 19
+
                 newSongChord.audio.pause()
                 newSongChord.audio.currentTime = 0
                 chordButtonTrack.parentNode.removeChild(chordButtonTrack)
