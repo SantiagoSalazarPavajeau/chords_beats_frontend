@@ -1,6 +1,8 @@
 
 This project was created with plain Javascript and Ruby on Rails as an API. It uses a modular design pattern that communicates with the Rails server. 
 
+[Chords and Beats LIVE](https://santiagosalazarpavajeau.github.io/chords_beats_frontend/)
+
 To get it working on the local enviroment:
 
 cd into backend folder and run:
