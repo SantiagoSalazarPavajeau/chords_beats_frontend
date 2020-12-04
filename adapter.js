@@ -79,32 +79,56 @@ class Adapter{
         }
 
         document.addEventListener("keydown",  (e) => {
-
+            console.log(e.code)
             switch (e.code) {
                 case "ShiftLeft":
-                  return synth.triggerAttackRelease("A1", "8n");
+                    return synth.triggerAttackRelease("A1", "16n")
                 case "KeyZ":
-                  return synth.triggerAttackRelease("A#1", "8n");
+                    return synth.triggerAttackRelease("A#1", "16n")
                 case "KeyX":
-                  return synth.triggerAttackRelease("B1", "8n");
+                    return synth.triggerAttackRelease("B1", "16n")
                 case "KeyC":
-                  return synth.triggerAttackRelease("C2", "8n");
+                    return synth.triggerAttackRelease("C2", "16n")
                 case "KeyV":
-                  return synth.triggerAttackRelease("C#2", "8n");
+                    return synth.triggerAttackRelease("C#2", "16n")
                 case "KeyB":
-                  return synth.triggerAttackRelease("D2", "8n");
+                    return synth.triggerAttackRelease("D2", "16n")
                 case "KeyN":
-                  return synth.triggerAttackRelease("D#2", "8n");
+                    return synth.triggerAttackRelease("D#2", "16n")
                 case "KeyM":
-                  return synth.triggerAttackRelease("E2", "8n");
+                    return synth.triggerAttackRelease("E2", "16n")
                 case "Comma":
-                  return synth.triggerAttackRelease("F2", "8n");
+                    return synth.triggerAttackRelease("F2", "16n")
                 case "Period":
-                  return synth.triggerAttackRelease("F#2", "8n");
+                    return synth.triggerAttackRelease("F#2", "16n")
                 case "Slash":
-                  return synth.triggerAttackRelease("G2", "8n");
+                    return synth.triggerAttackRelease("G2", "16n")
                 case "ShiftRight":
-                  return synth.triggerAttackRelease("G#2", "8n");
+                    return synth.triggerAttackRelease("G#2", "16n")
+                case "KeyA":
+                    return synth.triggerAttackRelease("A2", "16n");
+                case "KeyS":
+                    return synth.triggerAttackRelease("A#2", "16n");
+                case "KeyD":
+                    return synth.triggerAttackRelease("B2", "16n");
+                case "KeyF":
+                    return synth.triggerAttackRelease("C3", "16n");
+                case "KeyG":
+                    return synth.triggerAttackRelease("C#3", "16n");
+                case "KeyH":
+                    return synth.triggerAttackRelease("D3", "16n");
+                case "KeyJ":
+                    return synth.triggerAttackRelease("D#3", "16n");
+                case "KeyK":
+                    return synth.triggerAttackRelease("E3", "16n");
+                case "KeyL":
+                    return synth.triggerAttackRelease("F3", "16n");
+                case "Semicolon":
+                    return synth.triggerAttackRelease("F#3", "16n");
+                case "Quote":
+                    return synth.triggerAttackRelease("G3", "16n");
+                case "Enter":
+                    return synth.triggerAttackRelease("G#3", "16n");
                 default:
                   return;
               }
