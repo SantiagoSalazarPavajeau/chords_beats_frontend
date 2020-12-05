@@ -25,18 +25,6 @@ h1 {
   
 }
 
-.left-column{
-  width: 33%;
-}
-.songs-card{
-  height: 300px;
-  border-radius: 50px;
-  background: url(/assets/images/cassette.jpg);
-  background-position: left top;
-  background-repeat: no-repeat;
-  padding: 1px;
-
-}
 
 .waves{
   background-color: #343a40;
