@@ -25,10 +25,54 @@ h1 {
   
 }
 
+.left-column{
+  width: 33%;
+}
+.songs-card{
+  height: 300px;
+  border-radius: 50px;
+  background: url(/assets/images/cassette.jpg);
+  background-position: left top;
+  background-repeat: no-repeat;
+  padding: 1px;
+
+}
+
 .waves{
   background-color: #343a40;
   color: white;
-  border-radius: 40px;
+  border-radius: 5px;
+}
+
+.synth-bass-notes{
+  background-color: white;
+  color: #343a40;
+  border-radius: 5px;
+}
+
+.chord-add-button{
+  background-color: white;
+  color: #343a40;
+  border-radius: 30px;
+}
+
+.chord-in-song-button{
+  background-color: #343a40;
+  color: white;
+  border-radius: 30px;
+}
+
+.playback-button{
+  background-color: white;
+  color: #343a40;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+.song-button{
+  background-color: #343a40;
+  color: white;
+  border-radius: 30px;
 }
 
   @keyframes glow {

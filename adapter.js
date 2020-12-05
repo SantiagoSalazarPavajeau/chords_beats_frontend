@@ -50,7 +50,7 @@ class Adapter{
     }
 
     handleChordButtons(){
-        const chordButtons = document.querySelectorAll(".chord")
+        const chordButtons = document.querySelectorAll(".chord-add-button")
         for(let chordButton of chordButtons){
             chordButton.addEventListener("click", (e) =>{
                 this.updateTrack()
@@ -143,7 +143,7 @@ class Adapter{
         }
         for (let newSongChord of this.newSong.chords){
             let chordButtonTrack = document.createElement("button")
-            chordButtonTrack.className = "button btn-dark"
+            chordButtonTrack.className = "chord-in-song-button"
             chordButtonTrack.href = "#"
             chordButtonTrack.innerText = newSongChord.name
             let minus = document.createElement("span")
@@ -230,6 +230,7 @@ class Adapter{
         let trackBtns = document.getElementById("track-btns")
         let playButton = document.createElement("button")
         playButton.id = "play"
+        playButton.className = "playback-button"
         playButton.innerHTML = `<svg class="bi bi-play-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
                                 </svg>`
@@ -265,7 +266,7 @@ class Adapter{
                 song.beat.currentTime = 0
 
             }
-            const songButtons = document.getElementsByClassName("button btn-dark song")
+            const songButtons = document.getElementsByClassName("song-button")
             for(let songButton of songButtons){
                 songButton.disabled = false
             }
@@ -284,6 +285,7 @@ class Adapter{
         let trackBtns = document.getElementById("track-btns")
         let saveButton = document.createElement("button")
         saveButton.innerText = "Save Song"
+        saveButton.className = "playback-button"
         saveButton.addEventListener("click", ()=>{
             
             if(typeof this.newSong.name === "object"){

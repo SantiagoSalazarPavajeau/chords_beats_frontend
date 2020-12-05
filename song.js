@@ -55,7 +55,7 @@ class Song{
             chord.audio.pause()
             chord.audio.currentTime = 0
         }
-        const songButtons = document.getElementsByClassName("button btn-dark song")
+        const songButtons = document.getElementsByClassName("song-button")
             for(let songButton of songButtons){
                 songButton.disabled = true
             }
@@ -73,7 +73,7 @@ class Song{
                                     
                                     this.beat.pause()
                                     this.beat.currentTime = 0;
-                                    const songButtons = document.getElementsByClassName("button btn-dark song")
+                                    const songButtons = document.getElementsByClassName("song-button")
                                     document.getElementById("play").disabled = false
                                     for(let songButton of songButtons){
                                         songButton.disabled = false
@@ -100,11 +100,11 @@ class Song{
         let songsCard = document.getElementById("songs")
         let songButton = document.createElement("button")
         let br = document.createElement("br")
-        songButton.className = "button btn-dark song"
+        songButton.className = "song-button"
         songButton.innerText = this.name
         songButton.addEventListener("click", ()=> {
             
-            const songButtons = document.getElementsByClassName("button btn-dark song")
+            const songButtons = document.getElementsByClassName("song-button")
             for(let songButton of songButtons){
                 songButton.disabled = true
             }

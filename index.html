@@ -50,10 +50,10 @@
                 <div class="card text-center" style="background-image: url('assets/images/a.jpeg');  background-size: 100% 100%;opacity: 0.9;">
                   <div class="card-header text-center" id="track-header">
                     <h2>Track</h2>
-                    <input type="text" id="songName" value="**New Song Title**" class="bg-dark text-light">
+                    <input type="text" id="songName" value="**New Song Title**" class="song-button">
                     <div class="dropdown">
-                      <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Beat:
+                      <button class="playback-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        BEATS
                       </button>
                       <div class="dropdown-menu" id="dropdown-menu" aria-labelledby="dropdownMenuButton">
                        
@@ -96,82 +96,82 @@
                   <audio class="chord-audio" src="assets/chords/Gb.wav" id="Gb"></audio>
                   <audio class="chord-audio" src="assets/chords/Gm.wav" id="Gm"></audio>
                   <!-- <h5 class="text-white">Click on chord to create song</h5> -->
-                <button class="chord button btn-outline-dark" data-note="A" >A
+                <button class="chord-add-button" data-note="A" >A
                   <span>
                     <svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                     </svg>
                   </span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="Ab">Ab <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Ab">Ab <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="Am">Am <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Am">Am <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="B">B <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="B">B <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="Bb">Bb <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Bb">Bb <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="Bm">Bm <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Bm">Bm <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="C">C <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="C">C <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="Cm">Cm <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Cm">Cm <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="D">D <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="D">D <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="Db">Db <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Db">Db <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="Dm">Dm <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Dm">Dm <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="E">E <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="E">E <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="Eb">Eb <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Eb">Eb <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="Em">Em <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Em">Em <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="F">F <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="F">F <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="Fm">Fm <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Fm">Fm <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="G">G <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="G">G <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="Gb">Gb <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Gb">Gb <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord button btn-outline-dark" data-note="Gm">Gm <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Gm">Gm <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
@@ -190,31 +190,31 @@
                   <button class="waves">Square</button>
                   <button class="waves">Sine</button>
                   <br>
-                  <button>A(A)</button> 
-                  <button>S(A#)</button>
-                  <button>D(B)</button>
-                  <button>F(C)</button>
-                  <button>G(C#)</button>
-                  <button>H(D)</button>
-                  <button>J(D#)</button>
-                  <button>K(E)</button>
-                  <button>L(F)</button>
-                  <button>;(F#)</button>
-                  <button>'(G)</button>
-                  <button>Ent(G#)</button>
+                  <button class="synth-bass-notes" >A(A)</button> 
+                  <button class="synth-bass-notes" >S(A#)</button>
+                  <button class="synth-bass-notes" >D(B)</button>
+                  <button class="synth-bass-notes" >F(C)</button>
+                  <button class="synth-bass-notes" >G(C#)</button>
+                  <button class="synth-bass-notes" >H(D)</button>
+                  <button class="synth-bass-notes" >J(D#)</button>
+                  <button class="synth-bass-notes" >K(E)</button>
+                  <button class="synth-bass-notes" >L(F)</button>
+                  <button class="synth-bass-notes" >;(F#)</button>
+                  <button class="synth-bass-notes" >'(G)</button>
+                  <button class="synth-bass-notes" >Ent(G#)</button>
                   <br>
-                  <button>LS(A)</button> 
-                  <button>Z(A#)</button>
-                  <button>X(B)</button>
-                  <button>C(C)</button>
-                  <button>V(C#)</button>
-                  <button>B(D)</button>
-                  <button>N(D#)</button>
-                  <button>M(E)</button>
-                  <button>,(F)</button>
-                  <button>.(F#)</button>
-                  <button>/(G)</button>
-                  <button>RS(G#)</button>
+                  <button class="synth-bass-notes" >LS(A)</button> 
+                  <button class="synth-bass-notes" >Z(A#)</button>
+                  <button class="synth-bass-notes" >X(B)</button>
+                  <button class="synth-bass-notes" >C(C)</button>
+                  <button class="synth-bass-notes" >V(C#)</button>
+                  <button class="synth-bass-notes" >B(D)</button>
+                  <button class="synth-bass-notes" >N(D#)</button>
+                  <button class="synth-bass-notes" >M(E)</button>
+                  <button class="synth-bass-notes" >,(F)</button>
+                  <button class="synth-bass-notes" >.(F#)</button>
+                  <button class="synth-bass-notes" >/(G)</button>
+                  <button class="synth-bass-notes" >RS(G#)</button>
                   
                   <br>
                   <br>
