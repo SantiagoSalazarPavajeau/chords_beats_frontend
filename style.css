@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Warnes&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 h1 {
-    font-size: 70px;
+    font-size: 40px;
     color: #a158d1;
     text-align: center;
     font-family: 'Permanent Marker', cursive;
@@ -12,7 +12,7 @@ h1 {
     font-size: 30px;
     color: #fdfdfd;
     text-align: center;
-    font-family: 'Warnes', cursive;
+    font-family: 'Permanent Marker', cursive;
     text-shadow: 0 0 5px rgb(148, 205, 243), 0 0 10px rgb(120, 238, 222), 0 0 15px #960de6, 0 0 20px #6b00e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
   
 }
@@ -25,42 +25,126 @@ h1 {
   
 }
 
+.synth-bass-container{
+  display: flex; 
+  justify-content: center;
+}
+
+
+
+.chord-in-song-button{
+  background-color: white;
+  color: black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 20px;
+  height: 40px;
+  width: 80px;
+  font-size: large;
+  font-weight: bold;
+  border-color: #fff;
+}
+
+.song-button{
+  background-color: #fff;
+  color: black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 20px 0px 0px 20px;
+  height: 50px;
+  width: 250px;
+  font-size: larger;
+  font-weight: bold;
+  border-color: #fff;
+}
+
+.delete-song{
+  background-color: #BEB7DF;
+  color: white;
+  border-radius: 0px 20px 20px 0px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 50px;
+  font-size: larger;
+  font-weight: bold;
+  border-color: #fff;
+}
+
+
+.beats{
+  background-color: #2504b6;
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 50px;
+  width: 90px;
+  font-size: x-large;
+  font-weight: bold;
+  border-color: #fff;
+}
+
+.chord-add-button{
+  background-color: #fff;
+  color:black;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 40px;
+  width: 90px;
+  font-size: x-large;
+  font-weight: bold;
+  border-color: #fff;
+}
+
+
+
+.playback-button{
+  background-color: white;
+  color: #582C4D;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: x-large;
+  border-color: #582C4D;
+}
+
+.stop-button{
+  background-color: white;
+  color: #582C4D;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding-right: 5px;
+  font-weight: bold;
+  font-size: x-large;
+  border-color: #582C4D;
+}
+
+.save-song{
+  background-color: #2504b6;
+  color: white;
+  border-radius: 0px 20px 20px 0px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 50px;
+  font-size: larger;
+  font-weight: bold;
+  border-color: #fff;
+}
+
+
 
 .waves{
-  background-color: #343a40;
+  background-color: black;
   color: white;
-  border-radius: 5px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 30px;
+  width: 110px;
+  font-size: larger;
+  font-weight: bold;
+  border: transparent;
 }
 
 .synth-bass-notes{
   background-color: white;
-  color: #343a40;
-  border-radius: 5px;
-}
-
-.chord-add-button{
-  background-color: white;
-  color: #343a40;
-  border-radius: 30px;
-}
-
-.chord-in-song-button{
-  background-color: #343a40;
-  color: white;
-  border-radius: 30px;
-}
-
-.playback-button{
-  background-color: white;
-  color: #343a40;
-  border-radius: 30px;
+  color: #BEB7DF;
+  border-radius: 20px;
   font-weight: bold;
-}
-
-.song-button{
-  background-color: #343a40;
-  color: white;
-  border-radius: 30px;
 }
 
   @keyframes glow {
@@ -78,5 +162,65 @@ h1 {
     background-position: left top;
     background-repeat: repeat;
     padding: 1px;  
+  } 
+  
+  ul {
+    background-color: transparent;
+    border: transparent;
   }
   
+  li {
+    margin:0;
+    padding:0;
+    list-style:none;
+    position:relative;
+    float:left;
+    font-family: 'Permanent Marker', cursive;
+  }
+  
+  ul .white {
+    height:35px;
+    width:4em;
+    z-index:1;
+    border-left:1px solid #bbb;
+    border-bottom:1px solid #bbb;
+    border-radius:0 0 5px 5px;
+    box-shadow:-1px 0 0 rgba(255,255,255,0.8) inset,0 0 5px #ccc inset,0 0 3px rgba(0,0,0,0.2);
+  }
+  
+  ul .white:active {
+    border-top:1px solid #777;
+    border-left:1px solid #999;
+    border-bottom:1px solid #999;
+    box-shadow:2px 0 3px rgba(0,0,0,0.1) inset,-5px 5px 20px rgba(0,0,0,0.2) inset,0 0 3px rgba(0,0,0,0.2);
+    background:linear-gradient(to bottom,#fff 0%,#e9e9e9 100%)
+  }
+  
+  .black {
+    height:25px;
+    width:2em;
+    margin:0 0 0 -1em;
+    z-index:2;
+    border:1px solid #000;
+    border-radius:0 0 3px 3px;
+    box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -5px 2px 3px rgba(0,0,0,0.6) inset,0 2px 4px rgba(0,0,0,0.5);
+    background:linear-gradient(45deg,#222 0%,#555 100%);
+    color: white;
+  }
+  
+  .black:active {
+    box-shadow:-1px -1px 2px rgba(255,255,255,0.2) inset,0 -2px 2px 3px rgba(0,0,0,0.6) inset,0 1px 2px rgba(0,0,0,0.5);
+    background:linear-gradient(to right,#444 0%,#222 100%)
+  }
+  
+  .a,.g,.f,.d,.c {
+    margin:0 0 0 -1em
+  }
+  
+  ul li:first-child {
+    border-radius:5px 0 5px 5px
+  }
+  
+  ul li:last-child {
+    border-radius:0 5px 5px 5px
+  }
