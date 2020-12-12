@@ -11,28 +11,75 @@
     <link rel="stylesheet" href="style.css">
 
   </head>
-  <body style="background-image: url('assets/images/bg.jpeg');  background-size: cover;">
+  <body style=" background-color: white; opacity: 0.7;">
 
     <!-- Image and text -->
     <div class="text-center">
+      <br>
       <h1 class="text-white" href="#">
         <!-- <img src="assets/images/icon.png" width="100" height="100" class="d-inline-block align-top" alt="Synthesizer icon" loading="lazy"> -->
         Chords and Beats
         <!-- <img src="assets/images/icon2.png" width="100" height="100" class="d-inline-block align-top" alt="drum icon" loading="lazy"> -->
       </h1>
     </div>
-<br>
-<br>
-<div class="container">
+<div class="synth-bass-container" >
+  <div class="card text-center" style="width: 80%; background-color: transparent; border: transparent; ">
+    <!-- <div class="card-header bg-light text-secondary">
+    </div> -->
+    <div class="card-body" id="chords">
+      <h2>Synth BASS</h2>
+
+      <br>
+      <div class="synth-bass-container">
+        <ul class="set">
+          <li class="white g">LS</li>
+          <li class="black fs">Z</li>
+          <li class="white f">X</li>
+          <li class="white e">C</li>
+          <li class="black ds">V</li>
+          <li class="white d">B</li>
+          <li class="black cs">N</li>
+          <li class="white c">M</li>
+          <li class="white b">,</li>
+          <li class="black as">.</li>
+          <li class="white a">/</li>
+          <li class="black gs">RS</li>
+          <li class="white g">A</li>
+          <li class="black fs">S</li>
+          <li class="white f">D</li>
+          <li class="white e">F</li>
+          <li class="black ds">G</li>
+          <li class="white d">H</li>
+          <li class="black cs">J</li>
+          <li class="white c">K</li>
+          <li class="white b">L</li>
+          <li class="black as">;</li>
+          <li class="white a">'</li>
+          <li class="black gs">&#8629</li>
+        </ul>
+
+      </div>
+      <button class="waves">Triangle</button>
+      <button class="waves">Sawtooth</button>
+      <button class="waves">Square</button>
+      <button class="waves">Sine</button>
+      
+
+
+      <!-- <h5 class="text-white">Click on chord to create song</h5> -->
+    </div>
+  </div>
+</div>
+<div class="container" >
   <div class="row">
 
          <!-- Card Songs -->
             <div class="col-sm-4">
-              <div class="card text-center" id="rcorners3" >
+              <div class="card text-center rounded" style="background-color: transparent; border: hidden; id="rcorners3" >
                   <!-- <div class="card-header bg-dark text-white">
                       
                   </div> -->
-                    <div class="card-body" id="songs" style="background-image: url('assets/images/cassette.jpeg');  background-size: 100% 100%; opacity: 0.9;">
+                    <div class="card-body" id="songs" ">
                       <h2>Songs</h2>   
                       <div id="loading"><p><br><br>Loading...</p></div>
                       <!-- <h5 class="card-title text-white">Created by other users:</h5> -->
@@ -46,36 +93,44 @@
             <br>
 
                   <!-- Card Track -->
-            <div class="col-sm-8">
-                <div class="card text-center" style="background-image: url('assets/images/a.jpeg');  background-size: 100% 100%;opacity: 0.9;">
-                  <div class="card-header text-center" id="track-header">
+            <div class="col-sm-4">
+                <div class="card text-center rounded" style="background-color: transparent; border-radius: 30px; border: hidden;" >
+                  <div class="card-header text-center" style="background-color: transparent; border: hidden;" id="track-header">
                     <h2>Track</h2>
                     <input type="text" id="songName" value="**New Song Title**" class="song-button">
-                    <div class="dropdown">
-                      <button class="playback-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        BEATS
-                      </button>
-                      <div class="dropdown-menu" id="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                       
-                      </div>
+
+                    </div>
+                    <div >
+                      <div class="dropdown" id="track-btns">
+                        <button class="beats" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          BEATS
+                        </button>
+                        <div class="dropdown-menu" style="font-weight: bolder;" id="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                         
+                        </div>
                     </div>
                   </div>
-                  <div class="card-body" id="track">
+
+                  <div class="card-body" style="background-color: transparent;" id="track">
 
                 
                     
                   </div>
-                  <div class="card-footer text-muted" id="track-btns">
-                    
-                  </div>
+
+
                 </div>
+            </div>
               
               <br>
                   <!-- Card Chords -->
+            <div class="col-sm-4">
 
-              <div class="card text-center" style="background-image: url('assets/images/c.jpeg');  background-size: 100% 100%;  opacity: 0.9;">
-                <div class="card-body" id="chords">
+              <div class="card text-center rounded" style="background-color: transparent; border: hidden;" >
+                <div class="card-header text-center" style="background-color: transparent; border: hidden;" >
                   <h2>Chords</h2>
+                </div>
+                <div class="card-footer text-muted" style="background-color: transparent; border: hidden; " id="chords">
+
                   <audio class="chord-audio" src="assets/chords/A.wav" id="A"></audio>
                   <audio class="chord-audio" src="assets/chords/Ab.wav" id="Ab"></audio>
                   <audio class="chord-audio" src="assets/chords/Am.wav" id="Am"></audio>
@@ -98,134 +153,92 @@
                   <!-- <h5 class="text-white">Click on chord to create song</h5> -->
                 <button class="chord-add-button" data-note="A" >A
                   <span>
-                    <svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                     </svg>
                   </span>
                 </button>
-                <button class="chord-add-button" data-note="Ab">Ab <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Ab">Ab <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord-add-button" data-note="Am">Am <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Am">Am <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord-add-button" data-note="B">B <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="B">B <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord-add-button" data-note="Bb">Bb <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Bb">Bb <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord-add-button" data-note="Bm">Bm <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Bm">Bm <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord-add-button" data-note="C">C <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="C">C <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord-add-button" data-note="Cm">Cm <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Cm">Cm <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord-add-button" data-note="D">D <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="D">D <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord-add-button" data-note="Db">Db <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Db">Db <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord-add-button" data-note="Dm">Dm <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Dm">Dm <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord-add-button" data-note="E">E <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="E">E <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord-add-button" data-note="Eb">Eb <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Eb">Eb <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord-add-button" data-note="Em">Em <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Em">Em <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord-add-button" data-note="F">F <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="F">F <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord-add-button" data-note="Fm">Fm <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Fm">Fm <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord-add-button" data-note="G">G <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="G">G <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord-add-button" data-note="Gb">Gb <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Gb">Gb <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
-                <button class="chord-add-button" data-note="Gm">Gm <span><svg class="bi bi-plus-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <button class="chord-add-button" data-note="Gm">Gm <span><svg class="bi bi-plus-square-fill" width="14px" height="14px" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2zm6.5 4a.5.5 0 00-1 0v3.5H4a.5.5 0 000 1h3.5V12a.5.5 0 001 0V8.5H12a.5.5 0 000-1H8.5V4z" clip-rule="evenodd"></path>
                          </svg></span>
                 </button>
               </div>
 
               </div>
-              <br>
-              <br>
-              <div class="card text-center" style="background-image: url('assets/images/keyboard.jpeg');  background-size: 100% 100%;  opacity: 0.9;">
-                <!-- <div class="card-header bg-light text-secondary">
-                </div> -->
-                <div class="card-body" id="chords">
-                  <h2>Synth BASS</h2>
-                  <button class="waves">Triangle</button>
-                  <button class="waves">Sawtooth</button>
-                  <button class="waves">Square</button>
-                  <button class="waves">Sine</button>
-                  <br>
-                  <button class="synth-bass-notes" >A(A)</button> 
-                  <button class="synth-bass-notes" >S(A#)</button>
-                  <button class="synth-bass-notes" >D(B)</button>
-                  <button class="synth-bass-notes" >F(C)</button>
-                  <button class="synth-bass-notes" >G(C#)</button>
-                  <button class="synth-bass-notes" >H(D)</button>
-                  <button class="synth-bass-notes" >J(D#)</button>
-                  <button class="synth-bass-notes" >K(E)</button>
-                  <button class="synth-bass-notes" >L(F)</button>
-                  <button class="synth-bass-notes" >;(F#)</button>
-                  <button class="synth-bass-notes" >'(G)</button>
-                  <button class="synth-bass-notes" >Ent(G#)</button>
-                  <br>
-                  <button class="synth-bass-notes" >LS(A)</button> 
-                  <button class="synth-bass-notes" >Z(A#)</button>
-                  <button class="synth-bass-notes" >X(B)</button>
-                  <button class="synth-bass-notes" >C(C)</button>
-                  <button class="synth-bass-notes" >V(C#)</button>
-                  <button class="synth-bass-notes" >B(D)</button>
-                  <button class="synth-bass-notes" >N(D#)</button>
-                  <button class="synth-bass-notes" >M(E)</button>
-                  <button class="synth-bass-notes" >,(F)</button>
-                  <button class="synth-bass-notes" >.(F#)</button>
-                  <button class="synth-bass-notes" >/(G)</button>
-                  <button class="synth-bass-notes" >RS(G#)</button>
-                  
-                  <br>
-                  <br>
-                  <!-- <h5 class="text-white">Click on chord to create song</h5> -->
-                </div>
-                <!-- <div class="card-footer bg-light text-muted">
-                  
-                </div> -->
-              </div>
+
               
             </div>
+          </div>
+
+
    
 
 
