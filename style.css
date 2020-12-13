@@ -33,7 +33,7 @@
 }
 
 body {
-  background-color: white; 
+  background-color:white; 
   opacity: 0.7;
   font-family: 'Permanent Marker', cursive;
 }
@@ -43,6 +43,7 @@ h1 {
     color: #a158d1;
     text-align: center;
     animation: glow 1s ease-in-out infinite alternate;
+    
  
 }
   h2 {
@@ -61,10 +62,19 @@ h1 {
   
 }
 
+.nav{
+  display:flex;
+  justify-content: center;
+  background-color: rgb(235, 232, 232);
+  box-shadow: 0 4px 8px 0 rgba(138, 124, 124, 0.2), 0 6px 20px 0 rgba(121, 119, 119, 0.19);
+}
+
 .synth-bass-container{
   display: flex; 
   justify-content: center;
+
 }
+
 
 
 
@@ -231,6 +241,7 @@ h1 {
     height: 3vw;
     width: 4vw;
     z-index: 1;
+    background-color: white;
     border-left:1px solid #bbb;
     border-bottom:1px solid #bbb;
     border-radius:0 0 5px 5px;
@@ -263,7 +274,27 @@ h1 {
     margin: 0 0 0 -1.1676190476vw;
   }
   
+
   #keyboard > .note:last-child {
     border-right: 0.12vw solid #ffffff;
+    z-index: 1;
   }
-  
+
+  .synth-bass-keys{
+    display: flex; 
+    justify-content: center;
+    padding-top: 2%;
+    margin-right: 9%;
+    margin-left: 9%;
+    background:
+    linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+    linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+    linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+    linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+    linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+    linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+    background-color: #131313;
+    background-size: 20px 20px;
+    z-index: -1;
+    box-shadow: 0 4px 8px 0 rgba(160, 159, 159, 0.2), 0 6px 20px 0 rgba(199, 199, 199, 0.19);
+  }
