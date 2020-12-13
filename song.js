@@ -96,10 +96,10 @@ class Song{
     }
 
     renderSongButton(){ //called on load and on save of song
-    
+        let songContainer = document.createElement("div")
+        songContainer.className = "song-container"
         let songsCard = document.getElementById("songs")
         let songButton = document.createElement("button")
-        let br = document.createElement("br")
         songButton.className = "song-button"
         songButton.innerText = this.name
         songButton.addEventListener("click", ()=> {
@@ -131,10 +131,9 @@ class Song{
            }
         })
 
-        
-        songsCard.appendChild(songButton)
-        songsCard.appendChild(deleteSongButton)
-        songsCard.appendChild(br)
+        songContainer.appendChild(songButton)
+        songContainer.appendChild(deleteSongButton)
+        songsCard.appendChild(songContainer)
 
     }
 

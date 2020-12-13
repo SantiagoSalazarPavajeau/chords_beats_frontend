@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="style.css">
 
   </head>
-  <body style=" background-color: white; opacity: 0.7;">
+  <body >
 
     <!-- Image and text -->
-    <div class="text-center">
+    <div class="nav">
       <br>
       <h1 class="text-white" href="#">
         <!-- <img src="assets/images/icon.png" width="100" height="100" class="d-inline-block align-top" alt="Synthesizer icon" loading="lazy"> -->
@@ -30,35 +30,37 @@
       <h2>Synth BASS</h2>
 
       <br>
-      <div class="synth-bass-container">
-        <ul class="set">
-          <li class="white g">LS</li>
-          <li class="black fs">Z</li>
-          <li class="white f">X</li>
-          <li class="white e">C</li>
-          <li class="black ds">V</li>
-          <li class="white d">B</li>
-          <li class="black cs">N</li>
-          <li class="white c">M</li>
-          <li class="white b">,</li>
-          <li class="black as">.</li>
-          <li class="white a">/</li>
-          <li class="black gs">RS</li>
-          <li class="white g">A</li>
-          <li class="black fs">S</li>
-          <li class="white f">D</li>
-          <li class="white e">F</li>
-          <li class="black ds">G</li>
-          <li class="white d">H</li>
-          <li class="black cs">J</li>
-          <li class="white c">K</li>
-          <li class="white b">L</li>
-          <li class="black as">;</li>
-          <li class="white a">'</li>
-          <li class="black gs">&#8629</li>
-        </ul>
+      <div class="synth-bass-keys">
+        <div id="keyboard">
+          <div class="key white a" data-note="A3">LS</div>
+          <div class="key black a_sharp" data-note="A#3">Z</div>
+          <div class="key white b" data-note="B3">X</div>
+          <div class="key white c" data-note="C4">C</div>
+          <div class="key black c_sharp" data-note="C#4">V</div>
+          <div class="key white d" data-note="D4">B</div>
+          <div class="key black d_sharp" data-note="D#4">N</div>
+          <div class="key white e" data-note="E4">M</div>
+          <div class="key white f" data-note="F4">,</div>
+          <div class="key black f_sharp" data-note="F#4">.</div>
+          <div class="key white g" data-note="G4">/</div>
+          <div class="key black g_sharp" data-note="G#4">RS</div>
+          <div class="key white a" data-note="A4">A</div>
+          <div class="key black a_sharp" data-note="A#4">S</div>
+          <div class="key white b" data-note="B4">D</div>
+          <div class="key white c" data-note="C5">F</div>
+          <div class="key black c_sharp" data-note="C#5">G</div>
+          <div class="key white d" data-note="D5">H</div>
+          <div class="key black d_sharp" data-note="D#5">J</div>
+          <div class="key white e" data-note="E5">K</div>
+          <div class="key white f" data-note="F5">L</div>
+          <div class="key black f_sharp" data-note="F#5">;</div>
+          <div class="key white g" data-note="G5">'</div>
+          <div class="key black g_sharp" data-note="G#5">&#8629</div>
+          <div class="key white a" data-note="A3"></div>
+        </div>
 
       </div>
+      <br>
       <button class="waves">Triangle</button>
       <button class="waves">Sawtooth</button>
       <button class="waves">Square</button>
@@ -75,11 +77,11 @@
 
          <!-- Card Songs -->
             <div class="col-sm-4">
-              <div class="card text-center rounded" style="background-color: transparent; border: hidden; id="rcorners3" >
+              <div class="card text-center rounded" style="background-color: transparent; border: hidden;" id="rcorners3" >
                   <!-- <div class="card-header bg-dark text-white">
                       
                   </div> -->
-                    <div class="card-body" id="songs" ">
+                    <div class="songs-body" id="songs" ">
                       <h2>Songs</h2>   
                       <div id="loading"><p><br><br>Loading...</p></div>
                       <!-- <h5 class="card-title text-white">Created by other users:</h5> -->
@@ -97,8 +99,11 @@
                 <div class="card text-center rounded" style="background-color: transparent; border-radius: 30px; border: hidden;" >
                   <div class="card-header text-center" style="background-color: transparent; border: hidden;" id="track-header">
                     <h2>Track</h2>
-                    <input type="text" id="songName" value="**New Song Title**" class="song-button">
-
+                    <div class="center-input">
+                    <div id="new-song-container">
+                      <input type="text" id="songName" value="**New Song Title**" class="song-button">
+                    </div>
+                  </div>
                     </div>
                     <div >
                       <div class="dropdown" id="track-btns">
