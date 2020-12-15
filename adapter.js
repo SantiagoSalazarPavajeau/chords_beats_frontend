@@ -315,7 +315,11 @@ class Adapter{
                 }
             })
         }
-        return fetch(`${this.baseURL}/songs`, postObj)
+
+        if(song.name.trim().length === 0){
+            return alert("Add a song name")
+        } else{
+            return fetch(`${this.baseURL}/songs`, postObj)
             .then(resp => resp.json())
             .then(json=> {
                 let chordObjs=[]
@@ -329,6 +333,7 @@ class Adapter{
                 song.renderSongButton()
             }) 
             .catch(error => alert(`Cant render new song and ${error}`))
+        }
     }
 
     

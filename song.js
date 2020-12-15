@@ -5,6 +5,7 @@ class Song{
     constructor(name, chords, id){
         this.name = name
         this.chords = chords // create audios from chord with setter and getter methods
+        this.baseURL = "https://thawing-temple-12065.herokuapp.com/" // "http://localhost:3000"
         this.id = id
         this.files = this.files()
         this.beat = this.beat()
