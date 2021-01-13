@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Warnes&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
-@media screen and (min-width: 701px) {
+@media screen and (min-width: 601px) {
   button {
-    font-size: 1.5vw;
+    font-size: 100%;
   }
   .song-button{
-    width: 20vw;
+    width: 50%;
   }
   .save-song{
     width: 2vw;
@@ -17,12 +17,45 @@
   }
 }
 
-@media screen and (max-width: 700px) {
+/* 
+@media (min-width: 801px) and (max-width: 1300px) {
   button {
-    font-size: 3vw;
+    font-size: 1.5vw;
   }
   .song-button{
-   width: 30vw; 
+    width: 70%;
+  }
+  .save-song{
+    width: 2vw;
+
+  }
+  .delete-song{
+    width: 2vw;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 800px) {
+  button {
+    font-size: 100%;
+  }
+  .song-button{
+    width: 70%;
+  }
+  .save-song{
+    width: 2vw;
+
+  }
+  .delete-song{
+    width: 2vw;
+  }
+} */
+
+@media screen and (max-width: 600px) {
+  button {
+    font-size: 100%;
+  }
+  .song-button{
+   width: 80%; 
   }
   .save-song{
     width: 5vw;
@@ -43,8 +76,6 @@ h1 {
     color: #a158d1;
     text-align: center;
     animation: glow 1s ease-in-out infinite alternate;
-    
- 
 }
   h2 {
     font-size: 30px;
