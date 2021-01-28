@@ -5,12 +5,10 @@ class Song{
     constructor(name, chords, id){
         this.name = name
         this.chords = chords // create audios from chord with setter and getter methods
-        this.baseURL = "https://thawing-temple-12065.herokuapp.com/" // "http://localhost:3000"
         this.id = id
         this.files = this.files()
         this.beat = this.beat()
         this.intervals = []
-
     }
 
     stop(){
@@ -123,10 +121,9 @@ class Song{
                                       </svg>`
         deleteSongButton.addEventListener("click", ()=> {
            if (confirm("Are you sure you want to delete this song?")){
-                this.deleteSong(this)
+                deleteSong(this)
                 songButton.parentNode.removeChild(songButton)
                 deleteSongButton.parentNode.removeChild(deleteSongButton)
-                br.parentNode.removeChild(br)
            }else{
                alert("Close call!")
            }
@@ -138,22 +135,7 @@ class Song{
 
     }
 
-    deleteSong(song){
-        let deleteObj = {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-  
-        }
-        return fetch(`${this.baseURL}/songs/${song.id}`, deleteObj)
-            .then(resp => resp.json())
-            .then(()=> {
-                alert("Song deleted")
-            }) 
-            .catch(error => alert(`Couldn't delete song and ${error}`))
-    }
+
 
 
 

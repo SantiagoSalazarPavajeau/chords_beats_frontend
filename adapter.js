@@ -1,139 +1,17 @@
-// all fetch requests
-// import Chord from "./chord.js"
-// import Song from './song.js'
 
-
-// TO IMPROVE PERFORMANCE CREATE AUDIO TAGS ONLY ON PLAY
-// MOVE KEYS AND AUDIO TAGS TO INDEX.HTML INSTEAD OF CREATING THEM WITH JS DOM MANIPULATION
-
-
-// export default 
 class Adapter{
     constructor(){
-        this.baseURL = "https://thawing-temple-12065.herokuapp.com/" // "http://localhost:3000"
-        this.getSongs()
+        getSongs()
+        handleChordButtons()
+        onButton()
         this.allSongs = []
-        this.handleChordButtons()
-        this.handleKeyboardNotes()
         this.newSong = this.newSong()
+        this.keyboard = new Keyboard()
         this.beatDropdown()
         this.renderPlayButton()
         this.renderPauseButton()
         this.saveSongButton()
         this.updateTrack()
-    }
-
-
-    getSongs(){
-        return fetch(`${this.baseURL}/songs`)
-                    .then(resp => resp.json())
-                    .then((songs) => {
-                        let loading = document.getElementById("loading")
-                        loading.removeChild(loading.childNodes[0])
-                        for(let song of songs.data){
-                            let chordObjs = []
-                            for(let chord of song.attributes.chords){
-                                let newchord = new Chord(chord.name, chord.file)
-                                chordObjs.push(newchord)
-                            }
-                            let songObj = new Song(song.attributes.name, chordObjs, song.id)
-
-                            this.allSongs.push(songObj)
-                        }
-                        for(let song of this.allSongs){
-                            
-                            song.renderSongButton() // make this song.renderSongButton for example and other methods so classes take some of the code from the adapter
-                        }
-                        
-                    })
-                    .catch(error => alert(error))
-    }
-
-    handleChordButtons(){
-        const chordButtons = document.querySelectorAll(".chord-add-button")
-        for(let chordButton of chordButtons){
-            chordButton.addEventListener("click", (e) =>{
-                this.updateTrack()
-                const audio = document.getElementById(chordButton.dataset.note)
-                audio.play()
-                const chordName = chordButton.innerText
-                const newChord = new Chord(chordName, `assets/chords/${chordName}.wav`)
-                this.newSong.chords.push(newChord) //add chord object to song object chords attribute
-                this.updateTrack()
-            })
-        }
-    }
-
-    handleKeyboardNotes(){
-
-        const synth = new Tone.Synth().toDestination();
-        synth.oscillator.type = "fmsawtooth"
-        synth.oscillator.modulationType = "triangle";
-
-        const wavesButtons = document.querySelectorAll("button.waves")
-
-        for( let wavesButton of wavesButtons){
-            wavesButton.addEventListener("click", (e) => {
-                synth.oscillator.type = e.target.innerText.toLowerCase()
-            })
-        }
-
-        document.addEventListener("keydown",  (e) => {
-            console.log(e.code)
-            switch (e.code) {
-                case "ShiftLeft":
-                    return synth.triggerAttackRelease("A1", "16n")
-                case "KeyZ":
-                    return synth.triggerAttackRelease("A#1", "16n")
-                case "KeyX":
-                    return synth.triggerAttackRelease("B1", "16n")
-                case "KeyC":
-                    return synth.triggerAttackRelease("C2", "16n")
-                case "KeyV":
-                    return synth.triggerAttackRelease("C#2", "16n")
-                case "KeyB":
-                    return synth.triggerAttackRelease("D2", "16n")
-                case "KeyN":
-                    return synth.triggerAttackRelease("D#2", "16n")
-                case "KeyM":
-                    return synth.triggerAttackRelease("E2", "16n")
-                case "Comma":
-                    return synth.triggerAttackRelease("F2", "16n")
-                case "Period":
-                    return synth.triggerAttackRelease("F#2", "16n")
-                case "Slash":
-                    return synth.triggerAttackRelease("G2", "16n")
-                case "ShiftRight":
-                    return synth.triggerAttackRelease("G#2", "16n")
-                case "KeyA":
-                    return synth.triggerAttackRelease("A2", "16n");
-                case "KeyS":
-                    return synth.triggerAttackRelease("A#2", "16n");
-                case "KeyD":
-                    return synth.triggerAttackRelease("B2", "16n");
-                case "KeyF":
-                    return synth.triggerAttackRelease("C3", "16n");
-                case "KeyG":
-                    return synth.triggerAttackRelease("C#3", "16n");
-                case "KeyH":
-                    return synth.triggerAttackRelease("D3", "16n");
-                case "KeyJ":
-                    return synth.triggerAttackRelease("D#3", "16n");
-                case "KeyK":
-                    return synth.triggerAttackRelease("E3", "16n");
-                case "KeyL":
-                    return synth.triggerAttackRelease("F3", "16n");
-                case "Semicolon":
-                    return synth.triggerAttackRelease("F#3", "16n");
-                case "Quote":
-                    return synth.triggerAttackRelease("G3", "16n");
-                case "Enter":
-                    return synth.triggerAttackRelease("G#3", "16n");
-                default:
-                  return;
-              }
-        })
-
     }
 
     updateTrack(){
@@ -281,7 +159,7 @@ class Adapter{
         })
         trackBtns.appendChild(pauseButton)
     }
-    
+
     saveSongButton(){
         let nsContainer = document.getElementById("new-song-container")
         let saveButton = document.createElement("button")
@@ -295,53 +173,11 @@ class Adapter{
             if(typeof this.newSong.name === "object"){
                 alert("First add a name to the song!")
             }else{
-                this.saveSong(this.newSong)
+                saveSong(this.newSong)
             }
         })
         nsContainer.appendChild(saveButton)
     }
-
-    saveSong(song){ 
-        let postObj = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                song: {
-                    name: song.name, // returns name string from input
-                    chords_attributes: song.chords //returns array of chord objects //need only an array of files
-                }
-            })
-        }
-
-        if(song.name.trim().length === 0){
-            return alert("Add a song name")
-        } else{
-            return fetch(`${this.baseURL}/songs`, postObj)
-            .then(resp => resp.json())
-            .then(json=> {
-                let chordObjs=[]
-
-                for(let chord of json.data.attributes.chords){
-                    chordObjs.push(new Chord(chord.name, chord.file))
-                }
-                let song = new Song(json.data.attributes.name, chordObjs, json.data.id)
-                this.allSongs.push(song)
-                
-                song.renderSongButton()
-            }) 
-            .catch(error => alert(`Cant render new song and ${error}`))
-        }
-    }
-
-    
-  
-    
-
-    
-    
 
 }
 
