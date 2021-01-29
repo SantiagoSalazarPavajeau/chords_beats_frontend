@@ -134,9 +134,4 @@ class Song{
         songsCard.appendChild(songContainer)
 
     }
-
-
-
-
-
 }
