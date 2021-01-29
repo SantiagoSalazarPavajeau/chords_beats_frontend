@@ -14,9 +14,9 @@ function getSongs(){
                         }
                         let songObj = new Song(song.attributes.name, chordObjs, song.id)
 
-                        app.adapter.allSongs.push(songObj)
+                        allSongs.push(songObj)
                     }
-                    for(let song of app.adapter.allSongs){
+                    for(let song of allSongs){
                         
                         song.renderSongButton() // make this song.renderSongButton for example and other methods so classes take some of the code from the adapter
                     }
@@ -52,7 +52,7 @@ function saveSong(song){
                 chordObjs.push(new Chord(chord.name, chord.file))
             }
             let song = new Song(json.data.attributes.name, chordObjs, json.data.id)
-            app.adapter.allSongs.push(song)
+            allSongs.push(song)
             
             song.renderSongButton()
         }) 
