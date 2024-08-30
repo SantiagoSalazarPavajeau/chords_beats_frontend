@@ -32,7 +32,7 @@ function handleKeyboardNotes(){
     const synth = new Tone.Synth().toDestination();
     synth.oscillator.type = "fmsawtooth"
     synth.oscillator.modulationType = "triangle";
-
+    synth.volume.value = -12;
     const wavesButtons = document.querySelectorAll("button.waves")
 
     for( let wavesButton of wavesButtons){
