@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chords-and-beats
+  labels:
+    app: chords-and-beats
+    tier: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: chords-and-beats
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: chords-and-beats
+        tier: frontend
+    spec:
+      containers:
+      - name: chords-and-beats
+        image: santispavajeau/chords-and-beats-frontend:latest
+        ports:
+        - containerPort: 80
