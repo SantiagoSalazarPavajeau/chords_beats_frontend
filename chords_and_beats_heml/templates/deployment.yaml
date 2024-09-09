@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ .Values.labels.name }}
+    tier: {{ .Values.labels.tier }}
+spec:
+  replicas: {{.Values.replicaCount}}
+  selector:
+    matchLabels:
+      app: {{ .Values.labels.name }}
+      tier: {{ .Values.labels.tier }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.labels.name }}
+        tier: {{ .Values.labels.tier }}
+    spec:
+      containers:
+      - name: {{ .Values.labels.name }}
+        image: {{printf "%s:%s" .Values.image.repository .Values.image.tag}}
+        ports:
+        - containerPort: {{ .Values.containerPorts.port}}

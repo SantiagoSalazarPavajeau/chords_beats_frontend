@@ -1,0 +1,17 @@
+replicaCount: 2
+
+labels:
+  name: chords-and-beats
+  tier: frontend 
+
+image:
+  repository: santispavajeau/chords-and-beats-frontend
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 80
+
+containerPorts:
+  port: 80

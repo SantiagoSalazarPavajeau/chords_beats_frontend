@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "chords_and_beats_heml.fullname" . }}-test-connection"
+  labels:
+    {{- include "chords_and_beats_heml.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "chords_and_beats_heml.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
