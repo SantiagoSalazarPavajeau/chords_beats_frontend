@@ -12,13 +12,21 @@ terraform {
 provider "aws" {
   region  = "us-east-1"
 }
-
+# TODO : define instance files
 resource "aws_instance" "app_server" {
   ami           = "ami-0182f373e66f89c85"
   instance_type = "t2.micro"
 
   tags = {
     Name = "ExampleAppServerInstance"
+  }
+}
+
+resource "aws_instance" "nat" {
+  ami           = "ami-0182f373e66f89c85" # Example AMI ID
+  instance_type = "t2.micro"
+  tags = {
+    Name = "NAT Instance"
   }
 }
 

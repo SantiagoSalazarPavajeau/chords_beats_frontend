@@ -4,10 +4,11 @@ module "vpc" {
 
     
   # VPC Basic Details
-  name = "vpc-dev"
-  cidr = "10.0.0.0/16"   
-  azs                 = ["us-east-1a"]
-  public_subnets      = ["10.0.1.0/24"]
+  name = "${var.vpc_name}-${local.name}"
+  cidr = var.vpc_cidr_block 
+  azs                 = var.vpc_availability_zones
+  public_subnets      = var.vpc_public_subnets
+  private_subnets     = var.vpc_private_subnets
 
   # VPC DNS Parameters
   enable_dns_hostnames = true
@@ -17,14 +18,10 @@ module "vpc" {
     Type = "public-subnets"
   }
 
-  tags = {
-    Owner = "terraform"
-    Environment = "dev"
-  }
+  tags = local.common_tags
 
-  vpc_tags = {
-    Name = "vpc-dev"
-  }
+  vpc_tags = local.common_tags
   # Instances launched into the Public subnet should be assigned a public IP address.
   map_public_ip_on_launch = true
+  create_igw = true
 }
