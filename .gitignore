@@ -9,7 +9,7 @@ terraform/.terraform/providers/registry.terraform.io/hashicorp/aws/4.67.0/darwin
 *.tfstate.*
 
 terraform/private-key/*
-
+terraform/AWSCLIV2*
 # Crash log files
 crash.log
 crash.*.log
